@@ -11,17 +11,20 @@ export default function VarietySection() {
   return (
     <section id="varietas" className="flex flex-col gap-10">
       <SectionHeading {...copy} />
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {varietyHighlights.map((variety) => (
-          <GlassPanel key={variety.name} className="border-white/40 bg-white/25 p-6">
+          <GlassPanel
+            key={variety.name}
+            className="flex flex-col border-white/40 bg-white/25 p-6"
+          >
             <div className="flex flex-col gap-4">
-              <div className="aspect-video overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
                   src={variety.media}
-                  alt={`Dummy foto varietas ${variety.name}`}
-                  width={360}
-                  height={240}
-                  className="h-full w-full object-cover"
+                  alt={`Foto varietas ${variety.name}`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1280px) 260px, (min-width: 1024px) 31vw, (min-width: 640px) 45vw, 90vw"
                 />
               </div>
               <div className="flex flex-col gap-2">
