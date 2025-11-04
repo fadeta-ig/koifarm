@@ -19,30 +19,32 @@ export const heroStats = [
   { label: "Tingkat Survival", value: "99%" },
 ] as const;
 
+const UNSPLASH_PARAMS = "?auto=format&fit=crop&w=900&q=80" as const;
+
 export const varietyHighlights = [
   {
     name: "Kohaku",
     description: "Kontras merah-putih dengan grade show.",
     preset: "?variety=Kohaku&grade=Show",
-    media: "/media/gallery-koi-1.svg",
+    media: `https://images.unsplash.com/photo-1544551763-46a013bb82ce${UNSPLASH_PARAMS}`,
   },
   {
     name: "Taisho Sanke",
     description: "Motif tiga warna dengan sumi teratur.",
     preset: "?variety=Taisho%20Sanke&size_cm=45-60",
-    media: "/media/gallery-koi-2.svg",
+    media: `https://images.unsplash.com/photo-1517130038641-a774d04afb3c${UNSPLASH_PARAMS}`,
   },
   {
     name: "Showa Sanshoku",
     description: "Pattern dinamis untuk kontes.",
     preset: "?variety=Showa&grade=High",
-    media: "/media/gallery-koi-3.svg",
+    media: `https://images.unsplash.com/photo-1520880867055-1e30d1cb001c${UNSPLASH_PARAMS}`,
   },
   {
     name: "Tancho",
     description: "Mahkota merah solid, simbol keberuntungan.",
     preset: "?variety=Tancho&availability=Ready",
-    media: "/media/gallery-koi-4.svg",
+    media: `https://images.unsplash.com/photo-1504593811423-6dd665756598${UNSPLASH_PARAMS}`,
   },
 ] as const;
 
@@ -111,7 +113,11 @@ export const galleryItems = [
     title: "Tosai Kohaku 32cm",
     tag: "Ready",
     accent: "from-orange-400 via-rose-400 to-sky-400",
-    media: { type: "image" as const, src: "/media/gallery-koi-1.svg", alt: "Dummy foto koi Kohaku" },
+    media: {
+      type: "image" as const,
+      src: `https://images.unsplash.com/photo-1504608524841-42fe6f032b4b${UNSPLASH_PARAMS}`,
+      alt: "Foto koi Kohaku berwarna merah dan putih",
+    },
   },
   {
     title: "Nisai Showa 58cm",
@@ -120,21 +126,29 @@ export const galleryItems = [
     media: {
       type: "video" as const,
       src: "https://cdn.coverr.co/videos/coverr-koi-fish-swimming-5181/1080p.mp4",
-      poster: "/media/video-poster.svg",
-      alt: "Dummy video koi berenang",
+      poster: `https://images.unsplash.com/photo-1520880867055-1e30d1cb001c${UNSPLASH_PARAMS}`,
+      alt: "Video koi Showa berenang di kolam",
     },
   },
   {
     title: "Tancho 45cm",
     tag: "Ready",
     accent: "from-rose-400 via-orange-300 to-amber-400",
-    media: { type: "image" as const, src: "/media/gallery-koi-3.svg", alt: "Dummy foto koi Tancho" },
+    media: {
+      type: "image" as const,
+      src: `https://images.unsplash.com/photo-1518837695005-2083093ee35b${UNSPLASH_PARAMS}`,
+      alt: "Foto koi Tancho dengan pola merah bulat di kepala",
+    },
   },
   {
     title: "Shiro Utsuri 63cm",
     tag: "Sold",
     accent: "from-slate-500 via-slate-700 to-slate-900",
-    media: { type: "image" as const, src: "/media/gallery-koi-4.svg", alt: "Dummy foto koi Shiro Utsuri" },
+    media: {
+      type: "image" as const,
+      src: `https://images.unsplash.com/photo-1478694206463-91f014d63e19${UNSPLASH_PARAMS}`,
+      alt: "Foto koi Shiro Utsuri hitam putih di kolam",
+    },
   },
 ] as const;
 

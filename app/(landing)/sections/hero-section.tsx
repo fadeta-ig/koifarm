@@ -46,14 +46,16 @@ export default function HeroSection() {
         <div className="relative mt-10 lg:mt-0">
           <div className="absolute -inset-6 -z-10 bg-gradient-to-br from-orange-200/60 via-white/0 to-sky-300/40 blur-3xl" aria-hidden />
           <GlassPanel className="border-white/20 bg-white/30 p-2">
-            <Image
-              src="/images/hero-koi.svg"
-              alt="Ilustrasi koi berenang"
-              width={640}
-              height={480}
-              className="h-full w-full rounded-[28px] object-cover"
-              priority
-            />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[26px]">
+              <Image
+                src="https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=1200&q=80"
+                alt="Foto close-up koi berwarna oranye putih berenang"
+                fill
+                className="object-cover"
+                priority
+                sizes="(min-width: 1024px) 420px, (min-width: 640px) 70vw, 90vw"
+              />
+            </div>
           </GlassPanel>
         </div>
       </GlassPanel>
