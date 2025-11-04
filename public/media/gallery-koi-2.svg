@@ -1,0 +1,17 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.8" />
+    </linearGradient>
+    <radialGradient id="orb2" cx="0.7" cy="0.3" r="0.4">
+      <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="640" height="400" rx="32" fill="url(#bg2)" />
+  <circle cx="180" cy="140" r="120" fill="url(#orb2)" />
+  <path d="M100 220c110-180 290-180 400 0-110 180-290 180-400 0z" fill="#f8fafc" opacity="0.55" />
+  <path d="M220 210c50-80 150-80 200 0-50 80-150 80-200 0z" fill="#0f172a" opacity="0.45" />
+  <text x="48" y="340" fill="white" font-family="'Segoe UI', sans-serif" font-size="32" font-weight="600">Dummy Photo - Taisho Sanke</text>
+</svg>

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f8fb;
+  --background: #f5f7fb;
   --foreground: #0f172a;
   --muted-foreground: #475569;
   --primary: #ea580c;
   --primary-foreground: #f8fafc;
-  --surface: #ffffff;
-  --border: rgba(15, 23, 42, 0.08);
+  --surface: #ffffffd9;
+  --border: rgba(255, 255, 255, 0.4);
 }
 
 @theme inline {
@@ -20,13 +20,36 @@
 body {
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top, rgba(234, 88, 12, 0.08), transparent 55%),
-    radial-gradient(circle at 20% 80%, rgba(14, 116, 144, 0.08), transparent 55%),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto auto 0 50%;
+  width: 1200px;
+  height: 1200px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(circle at top, rgba(234, 88, 12, 0.18), transparent 65%),
+    radial-gradient(circle at 15% 70%, rgba(14, 116, 144, 0.16), transparent 60%),
+    radial-gradient(circle at 85% 40%, rgba(59, 130, 246, 0.15), transparent 60%);
+  filter: blur(10px);
+}
+
+body::after {
+  top: -400px;
+  bottom: auto;
+  background: conic-gradient(from 220deg at 50% 50%, rgba(234, 88, 12, 0.12), rgba(14, 116, 144, 0.08), transparent 70%);
 }
 
 ::selection {
-  background: rgba(234, 88, 12, 0.15);
+  background: rgba(234, 88, 12, 0.18);
+  color: var(--primary-foreground);
 }

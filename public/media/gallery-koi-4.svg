@@ -1,0 +1,17 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#475569" stop-opacity="0.85" />
+    </linearGradient>
+    <radialGradient id="orb4" cx="0.6" cy="0.4" r="0.5">
+      <stop offset="0%" stop-color="#cbd5f5" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="640" height="400" rx="32" fill="url(#bg4)" />
+  <ellipse cx="360" cy="170" rx="190" ry="120" fill="url(#orb4)" />
+  <path d="M140 220c110-180 280-180 390 0-110 180-280 180-390 0z" fill="#f8fafc" opacity="0.45" />
+  <path d="M240 210c55-90 165-90 220 0-55 90-165 90-220 0z" fill="#1e293b" opacity="0.6" />
+  <text x="48" y="340" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="32" font-weight="600">Dummy Photo - Shiro Utsuri</text>
+</svg>

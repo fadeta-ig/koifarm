@@ -5,14 +5,14 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
-const landingPath = path.resolve(rootDir, "../app/page.tsx");
+const dataPath = path.resolve(rootDir, "../app/(landing)/data/landing-content.ts");
 
-async function readLandingPage() {
-  return readFile(landingPath, "utf8");
+async function readLandingData() {
+  return readFile(dataPath, "utf8");
 }
 
-test("landing page menampilkan semua heading utama", async () => {
-  const source = await readLandingPage();
+test("landing content memuat semua heading utama", async () => {
+  const source = await readLandingData();
   const headings = [
     "Varietas Unggulan",
     "Keunggulan Farm",
@@ -26,17 +26,17 @@ test("landing page menampilkan semua heading utama", async () => {
     assert.match(
       source,
       new RegExp(heading, "u"),
-      `Heading ${heading} tidak ditemukan di page.tsx`,
+      `Heading ${heading} tidak ditemukan di landing-content.ts`,
     );
   }
 });
 
 test("template WhatsApp mengikuti format yang disyaratkan", async () => {
-  const source = await readLandingPage();
-  const numberMatch = source.match(/const WHATSAPP_NUMBER = "(\d+)";/u);
+  const source = await readLandingData();
+  const numberMatch = source.match(/export const WHATSAPP_NUMBER = "(\d+)";/u);
   assert.ok(numberMatch, "Nomor WhatsApp tidak ditemukan");
   const templateMatch = source.match(
-    /const WHATSAPP_TEMPLATE =\s*\n\s+"([^"]+)";/u,
+    /export const WHATSAPP_TEMPLATE =\s*\n\s+"([^"]+)";/u,
   );
   assert.ok(templateMatch, "Template WhatsApp tidak ditemukan");
 
@@ -58,11 +58,8 @@ test("template WhatsApp mengikuti format yang disyaratkan", async () => {
   );
 });
 
-test("hero section memiliki minimal tiga statistik", async () => {
-  const source = await readLandingPage();
-  const statsMatch = source.match(/const heroStats = \[/u);
-  assert.ok(statsMatch, "heroStats tidak ditemukan");
-
-  const statCount = (source.match(/label: "/gu) ?? []).length;
-  assert.ok(statCount >= 3, "heroStats minimal tiga item");
+test("hero stats memiliki minimal tiga entri", async () => {
+  const source = await readLandingData();
+  const statOccurrences = source.match(/label: "/gu) ?? [];
+  assert.ok(statOccurrences.length >= 3, "heroStats minimal tiga item");
 });
