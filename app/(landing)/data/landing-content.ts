@@ -1,0 +1,181 @@
+export const WHATSAPP_NUMBER = "6281298765432";
+
+export const WHATSAPP_TEMPLATE =
+  "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.";
+
+export const navigationLinks = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Varietas", href: "#varietas" },
+  { label: "Keunggulan", href: "#keunggulan" },
+  { label: "Proses", href: "#proses" },
+  { label: "Testimoni", href: "#testimoni" },
+  { label: "Galeri", href: "#galeri" },
+  { label: "Kunjungan", href: "#kunjungan" },
+] as const;
+
+export const heroStats = [
+  { label: "Koi Siap Kirim", value: "120+" },
+  { label: "Bloodline Juara", value: "18" },
+  { label: "Tingkat Survival", value: "99%" },
+] as const;
+
+export const varietyHighlights = [
+  {
+    name: "Kohaku",
+    description: "Kontras merah-putih dengan grade show.",
+    preset: "?variety=Kohaku&grade=Show",
+    media: "/media/gallery-koi-1.svg",
+  },
+  {
+    name: "Taisho Sanke",
+    description: "Motif tiga warna dengan sumi teratur.",
+    preset: "?variety=Taisho%20Sanke&size_cm=45-60",
+    media: "/media/gallery-koi-2.svg",
+  },
+  {
+    name: "Showa Sanshoku",
+    description: "Pattern dinamis untuk kontes.",
+    preset: "?variety=Showa&grade=High",
+    media: "/media/gallery-koi-3.svg",
+  },
+  {
+    name: "Tancho",
+    description: "Mahkota merah solid, simbol keberuntungan.",
+    preset: "?variety=Tancho&availability=Ready",
+    media: "/media/gallery-koi-4.svg",
+  },
+] as const;
+
+export const farmAdvantages = [
+  {
+    title: "Water Quality Monitoring",
+    description:
+      "Parameter kolam dipantau IoT, pH stabil 7.2–7.4 dengan pergantian air harian 5%.",
+  },
+  {
+    title: "Karantina & Health Check",
+    description:
+      "Setiap koi melewati 21 hari karantina, dilengkapi laporan kesehatan dan scraping mikroskopis.",
+  },
+  {
+    title: "Bloodline Tersertifikasi",
+    description:
+      "Kemitraan breeder Jepang ternama memastikan kualitas genetik dan sertifikat resmi.",
+  },
+  {
+    title: "Pendampingan After Sales",
+    description:
+      "Tim ahli siap memandu adaptasi kolam dan nutrisi pakan untuk menjaga performa warna.",
+  },
+] as const;
+
+export const purchaseSteps = [
+  {
+    title: "Jelajahi & Filter",
+    detail: "Gunakan filter varietas, grade, dan ukuran untuk menemukan kandidat terbaik.",
+  },
+  {
+    title: "Konsultasi Cepat",
+    detail:
+      "Klik WhatsApp dengan template otomatis, sertakan minat Anda dan dapatkan kurasi personal.",
+  },
+  {
+    title: "Reservasi Aman",
+    detail:
+      "Kami tandai koi sebagai Reserved setelah DP diterima. Update status realtime di katalog.",
+  },
+  {
+    title: "Pengiriman Terkontrol",
+    detail:
+      "Packing oksigen 3 lapis, suhu dijaga 24 °C, update lokasi hingga tiba di kolam Anda.",
+  },
+] as const;
+
+export const testimonials = [
+  {
+    name: "Hendra S.",
+    title: "Juara Koi Show Surabaya 2024",
+    message:
+      "Varietas Showa dari Asyifa Koi Farm tampil maksimal di kontes. Tim memberi panduan grooming yang detail.",
+  },
+  {
+    name: "Maya & Riko",
+    title: "Collector Jakarta",
+    message:
+      "Suka sekali dengan transparansi data kesehatan dan update video rutin sebelum pengiriman.",
+  },
+] as const;
+
+export const galleryItems = [
+  {
+    title: "Tosai Kohaku 32cm",
+    tag: "Ready",
+    accent: "from-orange-400 via-rose-400 to-sky-400",
+    media: { type: "image" as const, src: "/media/gallery-koi-1.svg", alt: "Dummy foto koi Kohaku" },
+  },
+  {
+    title: "Nisai Showa 58cm",
+    tag: "Reserved",
+    accent: "from-sky-500 via-indigo-500 to-purple-500",
+    media: {
+      type: "video" as const,
+      src: "https://cdn.coverr.co/videos/coverr-koi-fish-swimming-5181/1080p.mp4",
+      poster: "/media/video-poster.svg",
+      alt: "Dummy video koi berenang",
+    },
+  },
+  {
+    title: "Tancho 45cm",
+    tag: "Ready",
+    accent: "from-rose-400 via-orange-300 to-amber-400",
+    media: { type: "image" as const, src: "/media/gallery-koi-3.svg", alt: "Dummy foto koi Tancho" },
+  },
+  {
+    title: "Shiro Utsuri 63cm",
+    tag: "Sold",
+    accent: "from-slate-500 via-slate-700 to-slate-900",
+    media: { type: "image" as const, src: "/media/gallery-koi-4.svg", alt: "Dummy foto koi Shiro Utsuri" },
+  },
+] as const;
+
+export const visitInfo = {
+  address: "Jl. Raya Parung KM 24, Bogor, Jawa Barat",
+  schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
+  mapUrl: "https://maps.google.com/?q=Asyifa+Koi+Farm",
+} as const;
+
+export const sectionCopies = {
+  varieties: {
+    eyebrow: "Varietas",
+    title: "Varietas Unggulan",
+    description: "Pilih varietas favorit dengan preset filter siap pakai dan lihat status stok terbaru.",
+  },
+  advantages: {
+    eyebrow: "Keunggulan",
+    title: "Keunggulan Farm",
+    description:
+      "Dipercaya kolektor karena kualitas air terjaga, protokol kesehatan ketat, dan bloodline tersertifikasi.",
+  },
+  process: {
+    eyebrow: "Proses",
+    title: "Cara Beli",
+    description:
+      "Proses sederhana dari memilih koi sampai tiba di kolam Anda, lengkap dengan update real-time.",
+  },
+  testimonials: {
+    eyebrow: "Review",
+    title: "Testimoni",
+    description: "Cerita singkat pelanggan yang puas dengan pendampingan Asyifa Koi Farm.",
+  },
+  gallery: {
+    eyebrow: "Media",
+    title: "Galeri Kolam",
+    description:
+      "Foto dan video dummy menampilkan suasana kolam dan koi pilihan untuk ilustrasi katalog.",
+  },
+  visit: {
+    eyebrow: "Kunjungan",
+    title: "Kunjungi Farm",
+    description: "Atur janji temu untuk melihat langsung koleksi koi dan fasilitas karantina kami.",
+  },
+} as const;
