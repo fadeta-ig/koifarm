@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi koi Asyifa Koi Farm</title>
+  <desc id="desc">Dua ikan koi merah putih berenang di kolam biru kehijauan dengan riak air.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e7490"/>
+      <stop offset="100%" stop-color="#022c42"/>
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#fef3c7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#light)"/>
+  <g filter="url(#shadow)">
+    <path d="M285 420c90 40 160-80 150-170-5-53-45-93-90-108-54-19-119 3-152 62-33 59-15 130 42 172 13 10 30 25 50 44z" fill="#f97316"/>
+    <path d="M200 250c-15 45 10 120 80 170 50 35 90 40 120 35-25-20-47-45-63-74-35-66-36-138-18-181-42 5-73 24-89 50z" fill="#fef2f2"/>
+    <ellipse cx="210" cy="260" rx="18" ry="22" fill="#0f172a" opacity="0.2"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M940 230c-72-60-170 10-194 102-13 52 5 107 44 141 47 42 120 45 171-5 51-50 56-128-5-188-11-10-26-27-44-50z" fill="#f97316"/>
+    <path d="M995 390c17-43 3-114-55-172-42-42-80-54-110-56 20 23 38 50 50 79 26 68 17 139-4 181 43-2 78-19 99-32z" fill="#fef2f2"/>
+    <ellipse cx="980" cy="370" rx="18" ry="22" fill="#0f172a" opacity="0.2"/>
+  </g>
+  <defs>
+    <filter id="shadow" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+</svg>
