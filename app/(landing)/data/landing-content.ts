@@ -21,6 +21,13 @@ export const heroStats = [
 
 const UNSPLASH_PARAMS = "?auto=format&fit=crop&w=900&q=80" as const;
 
+export const heroMedia = {
+  src: `https://images.unsplash.com/photo-1506345282097-5b614c0371a4${UNSPLASH_PARAMS}`,
+  alt: "Foto close-up koi berwarna oranye putih berenang",
+  blurDataURL:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z/C/HwAF/gL+Lp+gfQAAAABJRU5ErkJggg==",
+} as const;
+
 export const varietyHighlights = [
   {
     name: "Kohaku",
