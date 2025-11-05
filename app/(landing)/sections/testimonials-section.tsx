@@ -1,19 +1,24 @@
+import { promises as fs } from "fs";
+import path from "path";
+
 import GlassPanel from "../components/glass-panel";
 import SectionHeading from "../components/section-heading";
 import { sectionCopies } from "../data/landing-content";
 
 async function getTestimonials() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/content`, {
-      next: { revalidate: 60 }
-    });
-    const data = await res.json();
+    // Read directly from file system for reliable build-time and runtime data
+    const dataPath = path.join(process.cwd(), "app/admin/data/content.json");
+    const fileContents = await fs.readFile(dataPath, "utf8");
+    const data = JSON.parse(fileContents);
     return data.testimonials || [];
   } catch (error) {
     console.error("Failed to fetch testimonials:", error);
     return [];
   }
 }
+
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function TestimonialsSection() {
   const copy = sectionCopies.testimonials;
