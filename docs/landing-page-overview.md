@@ -7,7 +7,7 @@ Landing page menampilkan katalog awal Asyifa Koi Farm yang fokus pada pengenalan
 
 ### Navigasi Utama
 - Tautan anchor: Beranda, Varietas, Keunggulan, Proses, Testimoni, Galeri, Kunjungan.
-- Tombol cepat ke WhatsApp tersedia melalui komponen `WhatsAppButton` yang menggunakan nomor `6281298765432` dan template pesan otomatis.
+- Tombol cepat ke WhatsApp tersedia melalui komponen `WhatsAppButton` yang menggunakan nomor `6281934301918` dan template pesan otomatis.
 
 ### Hero (`#beranda`)
 - Identitas: label "Asyifa Koi Farm" dengan headline "Koi premium siap kirim dengan pendampingan ahli end-to-end".
@@ -56,7 +56,7 @@ Landing page menampilkan katalog awal Asyifa Koi Farm yang fokus pada pengenalan
 
 ## Saran Pengembangan Lanjutan
 1. **Integrasi Data Dinamis**
-   - Sambungkan data varietas, galeri, dan testimoni ke CMS atau API Bagisto agar konten mudah diperbarui tanpa rebuild.
+   - Sambungkan data varietas, galeri, dan testimoni ke API Bagisto agar konten mudah diperbarui tanpa rebuild.
    - Pastikan caching ISR/SSR untuk menjaga performa saat data sering berubah.
 
 2. **Halaman Katalog & Detail**
