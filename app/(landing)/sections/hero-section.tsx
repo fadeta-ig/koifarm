@@ -1,66 +1,111 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import GlassPanel from "../components/glass-panel";
+import LiquidCard from "../components/liquid-card";
 import WhatsAppButton from "../components/whatsapp-button";
 import { heroMedia, heroStats } from "../data/landing-content";
 
 export default function HeroSection() {
   return (
-    <section id="beranda" className="relative isolate flex flex-col gap-16">
-      <div className="pointer-events-none absolute inset-x-0 -top-40 -z-10 h-[520px] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.2),_transparent_60%)]" aria-hidden />
-      <GlassPanel className="flex flex-col gap-12 border-white/30 bg-white/20 p-8 sm:p-12 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-16 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
-              Asyifa Koi Farm
-            </p>
-            <h1 className="text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
-              Koi premium siap kirim dengan pendampingan ahli end-to-end
-            </h1>
-            <p className="max-w-xl text-lg text-slate-600">
-              Temukan koi unggulan dari bloodline juara, lengkap dengan data kesehatan, video berenang, dan template konsultasi WhatsApp instan.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3 sm:gap-4">
-            <WhatsAppButton label="Konsultasi via WhatsApp" />
-            <Link
-              href="/katalog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/70 px-6 py-3 text-sm font-semibold text-slate-700 shadow-[0_12px_30px_-18px_rgba(15,23,42,0.35)] transition hover:border-orange-200 hover:text-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-            >
-              Jelajah katalog
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-          <dl className="grid grid-cols-1 gap-4 text-sm text-slate-600 sm:grid-cols-2 lg:grid-cols-3">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-white/40 bg-white/40 p-4 text-center shadow-[0_18px_50px_-30px_rgba(15,23,42,0.55)]">
-                <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  {stat.label}
-                </dt>
-                <dd className="text-2xl font-semibold text-slate-900">{stat.value}</dd>
+    <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
+          {/* Left Content */}
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-6">
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-orange-200/50 bg-gradient-to-r from-orange-50/80 to-rose-50/80 px-4 py-2 backdrop-blur-sm">
+                <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
+                <span className="text-sm font-semibold text-orange-600">
+                  Premium Koi Farm
+                </span>
               </div>
-            ))}
-          </dl>
-        </div>
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="absolute -inset-6 -z-10 bg-gradient-to-br from-orange-200/60 via-white/0 to-sky-300/40 blur-3xl" aria-hidden />
-          <GlassPanel className="w-full max-w-[420px] border-white/20 bg-white/40 p-3 sm:p-4">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px]">
-              <Image
-                src={heroMedia.src}
-                alt={heroMedia.alt}
-                fill
-                className="object-cover"
-                priority
-                placeholder="blur"
-                blurDataURL={heroMedia.blurDataURL}
-                sizes="(min-width: 1280px) 420px, (min-width: 1024px) 36vw, (min-width: 640px) 65vw, 90vw"
-              />
+
+              <h1 className="text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                Koi Premium{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-gradient-to-r from-orange-600 to-rose-600 bg-clip-text text-transparent">
+                    Terbaik
+                  </span>
+                  <div className="absolute inset-0 -z-10 translate-y-1 bg-gradient-to-r from-orange-400/30 to-rose-400/30 blur-xl" />
+                </span>
+              </h1>
+
+              <p className="text-xl text-slate-600 leading-relaxed">
+                Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.
+              </p>
             </div>
-          </GlassPanel>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <WhatsAppButton label="Konsultasi Gratis" />
+              <Link
+                href="/products"
+                className="group inline-flex items-center gap-2 rounded-2xl border border-white/40 bg-white/60 px-8 py-4 text-base font-semibold text-slate-700 shadow-[0_8px_24px_0_rgba(15,23,42,0.1)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(234,88,12,0.15)] hover:border-orange-200/60"
+              >
+                Lihat Koleksi
+                <svg
+                  className="h-5 w-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4">
+              {heroStats.map((stat, index) => (
+                <LiquidCard key={stat.label} variant="gradient" className="p-6 text-center">
+                  <p className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</p>
+                  <p className="text-xs font-medium text-slate-600 uppercase tracking-wide">
+                    {stat.label}
+                  </p>
+                </LiquidCard>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="relative lg:h-[600px]">
+            {/* Decorative elements */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-orange-400/20 via-transparent to-cyan-400/20 rounded-3xl blur-3xl" />
+
+            <LiquidCard variant="gradient" className="relative h-full p-6 transform-3d hover:scale-[1.02] transition-transform duration-500">
+              <div className="relative h-full w-full overflow-hidden rounded-2xl">
+                <Image
+                  src={heroMedia.src}
+                  alt={heroMedia.alt}
+                  fill
+                  className="object-cover"
+                  priority
+                  placeholder="blur"
+                  blurDataURL={heroMedia.blurDataURL}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                />
+
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent" />
+
+                {/* Floating badge */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="rounded-2xl border border-white/40 bg-white/80 px-6 py-4 backdrop-blur-xl">
+                    <p className="text-sm font-semibold text-slate-900">
+                      Tersertifikasi Bloodline Juara
+                    </p>
+                    <p className="text-xs text-slate-600 mt-1">
+                      Kemitraan langsung dengan breeder Jepang
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </LiquidCard>
+          </div>
         </div>
-      </GlassPanel>
+      </div>
     </section>
   );
 }

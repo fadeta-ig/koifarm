@@ -4,13 +4,12 @@ export const WHATSAPP_TEMPLATE =
   "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.";
 
 export const navigationLinks = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Varietas", href: "#varietas" },
-  { label: "Keunggulan", href: "#keunggulan" },
-  { label: "Proses", href: "#proses" },
-  { label: "Testimoni", href: "#testimoni" },
-  { label: "Galeri", href: "#galeri" },
-  { label: "Kunjungan", href: "#kunjungan" },
+  { label: "Beranda", href: "/" },
+  { label: "Produk", href: "/products" },
+  { label: "Tentang", href: "/about" },
+  { label: "Galeri", href: "/gallery" },
+  { label: "Testimoni", href: "/testimonials" },
+  { label: "Kontak", href: "/contact" },
 ] as const;
 
 export const heroStats = [
