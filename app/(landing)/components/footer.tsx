@@ -81,7 +81,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-10 border-t border-slate-200 pt-8">
-            <p className="text-center text-sm text-slate-500">
+            <p className="text-center text-sm text-slate-500" suppressHydrationWarning>
               © {new Date().getFullYear()} Asyifa Koi Farm. All rights reserved.
               <span className="block mt-1 text-xs">Foto dan video untuk keperluan demonstrasi.</span>
             </p>
