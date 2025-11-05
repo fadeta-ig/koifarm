@@ -20,6 +20,9 @@ export default function VarietiesPage() {
     preset: "",
     media: "",
   });
+  const [mediaFile, setMediaFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [mediaPreview, setMediaPreview] = useState<string>("");
 
   useEffect(() => {
     fetchVarieties();
@@ -31,25 +34,66 @@ export default function VarietiesPage() {
     setVarieties(data);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const uploadFile = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
 
-    const url = "/api/admin/varieties";
-    const method = editingVariety ? "PUT" : "POST";
-    const body = editingVariety
-      ? { ...formData, id: editingVariety.id }
-      : formData;
-
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+    const response = await fetch("/api/admin/upload", {
+      method: "POST",
+      body: formData,
     });
 
-    setIsModalOpen(false);
-    setEditingVariety(null);
-    setFormData({ name: "", description: "", preset: "", media: "" });
-    fetchVarieties();
+    if (!response.ok) {
+      throw new Error("Failed to upload file");
+    }
+
+    const data = await response.json();
+    return data.url;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setUploading(true);
+
+    try {
+      let media = formData.media;
+
+      // Upload media file if new file is selected
+      if (mediaFile) {
+        media = await uploadFile(mediaFile);
+      }
+
+      // Validate that media source is provided
+      if (!media) {
+        alert("Silakan upload file media terlebih dahulu");
+        setUploading(false);
+        return;
+      }
+
+      const url = "/api/admin/varieties";
+      const method = editingVariety ? "PUT" : "POST";
+      const body = editingVariety
+        ? { ...formData, media, id: editingVariety.id }
+        : { ...formData, media };
+
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      setIsModalOpen(false);
+      setEditingVariety(null);
+      setFormData({ name: "", description: "", preset: "", media: "" });
+      setMediaFile(null);
+      setMediaPreview("");
+      fetchVarieties();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Gagal menyimpan data. Silakan coba lagi.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleEdit = (variety: Variety) => {
@@ -60,6 +104,7 @@ export default function VarietiesPage() {
       preset: variety.preset,
       media: variety.media,
     });
+    setMediaPreview(variety.media);
     setIsModalOpen(true);
   };
 
@@ -70,9 +115,20 @@ export default function VarietiesPage() {
     }
   };
 
+  const handleMediaFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setMediaFile(file);
+      const previewUrl = URL.createObjectURL(file);
+      setMediaPreview(previewUrl);
+    }
+  };
+
   const openAddModal = () => {
     setEditingVariety(null);
     setFormData({ name: "", description: "", preset: "", media: "" });
+    setMediaFile(null);
+    setMediaPreview("");
     setIsModalOpen(true);
   };
 
@@ -199,20 +255,20 @@ export default function VarietiesPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">URL Media</label>
+                <label className="block text-sm font-medium text-gray-200 mb-2">Upload Media (Gambar)</label>
                 <input
-                  type="url"
-                  value={formData.media}
-                  onChange={(e) => setFormData({ ...formData, media: e.target.value })}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://example.com/image.jpg"
-                  required
+                  type="file"
+                  accept="image/jpeg,image/jpg,image/png,image/webp"
+                  onChange={handleMediaFileChange}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required={!editingVariety}
                 />
+                <p className="text-xs text-gray-400 mt-1">Format: JPEG, PNG, WebP - Max 10MB</p>
               </div>
 
-              {formData.media && (
+              {mediaPreview && (
                 <div className="rounded-lg overflow-hidden">
-                  <img src={formData.media} alt="Preview" className="w-full h-48 object-cover" />
+                  <img src={mediaPreview} alt="Preview" className="w-full h-48 object-cover" />
                 </div>
               )}
 
@@ -220,15 +276,27 @@ export default function VarietiesPage() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 bg-white/10 text-white py-3 px-4 rounded-lg hover:bg-white/20 transition-colors"
+                  disabled={uploading}
+                  className="flex-1 bg-white/10 text-white py-3 px-4 rounded-lg hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all"
+                  disabled={uploading}
+                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {editingVariety ? "Simpan Perubahan" : "Tambah Varietas"}
+                  {uploading ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Mengupload...
+                    </>
+                  ) : (
+                    editingVariety ? "Simpan Perubahan" : "Tambah Varietas"
+                  )}
                 </button>
               </div>
             </form>

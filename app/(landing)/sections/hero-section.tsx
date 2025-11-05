@@ -1,13 +1,36 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
+import { readFile } from "fs/promises";
+import path from "path";
 
 import LiquidCard from "../components/liquid-card";
 import WhatsAppButton from "../components/whatsapp-button";
-import { heroMedia, heroStats } from "../data/landing-content";
+import { heroStats } from "../data/landing-content";
 
-export default function HeroSection() {
+async function getHeroData() {
+  try {
+    const contentPath = path.join(process.cwd(), "app/admin/data/content.json");
+    const content = await readFile(contentPath, "utf-8");
+    const data = JSON.parse(content);
+    return data.hero || {
+      mediaSrc: "https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=900&q=80",
+      mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
+      badge: "Tersertifikasi Bloodline Juara",
+      badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+    };
+  } catch (error) {
+    console.error("Error reading hero data:", error);
+    return {
+      mediaSrc: "https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=900&q=80",
+      mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
+      badge: "Tersertifikasi Bloodline Juara",
+      badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+    };
+  }
+}
+
+export default async function HeroSection() {
+  const heroData = await getHeroData();
   return (
     <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -77,13 +100,11 @@ export default function HeroSection() {
             <LiquidCard variant="gradient" className="relative h-full p-6 transform-3d hover:scale-[1.02] transition-transform duration-500">
               <div className="relative h-full w-full overflow-hidden rounded-2xl">
                 <Image
-                  src={heroMedia.src}
-                  alt={heroMedia.alt}
+                  src={heroData.mediaSrc}
+                  alt={heroData.mediaAlt}
                   fill
                   className="object-cover"
                   priority
-                  placeholder="blur"
-                  blurDataURL={heroMedia.blurDataURL}
                   sizes="(min-width: 1024px) 50vw, 100vw"
                 />
 
@@ -94,10 +115,10 @@ export default function HeroSection() {
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="rounded-2xl border border-white/40 bg-white/80 px-6 py-4 backdrop-blur-xl">
                     <p className="text-sm font-semibold text-slate-900">
-                      Tersertifikasi Bloodline Juara
+                      {heroData.badge}
                     </p>
                     <p className="text-xs text-slate-600 mt-1">
-                      Kemitraan langsung dengan breeder Jepang
+                      {heroData.badgeSubtext}
                     </p>
                   </div>
                 </div>
