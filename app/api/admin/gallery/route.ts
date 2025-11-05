@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
+import { revalidatePath } from "next/cache";
 
 const dataPath = path.join(
   process.cwd(),
@@ -14,6 +15,8 @@ async function readData() {
 
 async function writeData(data: any) {
   await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
+  // Trigger revalidation of landing page immediately
+  revalidatePath("/", "page");
 }
 
 export async function GET() {
