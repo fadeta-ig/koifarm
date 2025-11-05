@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.coverr.co",
       },
+      {
+        protocol: "https",
+        hostname: "storage.bekoifarm.co.id",
+      },
     ],
   },
 };

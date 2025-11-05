@@ -26,6 +26,11 @@ export default function GalleryPage() {
     mediaPoster: "",
     mediaAlt: "",
   });
+  const [mediaFile, setMediaFile] = useState<File | null>(null);
+  const [posterFile, setPosterFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [mediaPreview, setMediaPreview] = useState<string>("");
+  const [posterPreview, setPosterPreview] = useState<string>("");
 
   const tagOptions = ["Ready", "Reserved", "Sold"];
   const accentOptions = [
@@ -47,23 +52,70 @@ export default function GalleryPage() {
     setGallery(data);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const uploadFile = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
 
-    const url = "/api/admin/gallery";
-    const method = editingItem ? "PUT" : "POST";
-    const body = editingItem ? { ...formData, id: editingItem.id } : formData;
-
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+    const response = await fetch("/api/admin/upload", {
+      method: "POST",
+      body: formData,
     });
 
-    setIsModalOpen(false);
-    setEditingItem(null);
-    resetForm();
-    fetchGallery();
+    if (!response.ok) {
+      throw new Error("Failed to upload file");
+    }
+
+    const data = await response.json();
+    return data.url;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setUploading(true);
+
+    try {
+      let mediaSrc = formData.mediaSrc;
+      let mediaPoster = formData.mediaPoster;
+
+      // Upload media file if new file is selected
+      if (mediaFile) {
+        mediaSrc = await uploadFile(mediaFile);
+      }
+
+      // Upload poster file if new file is selected
+      if (posterFile) {
+        mediaPoster = await uploadFile(posterFile);
+      }
+
+      // Validate that media source is provided
+      if (!mediaSrc) {
+        alert("Silakan upload file media terlebih dahulu");
+        setUploading(false);
+        return;
+      }
+
+      const url = "/api/admin/gallery";
+      const method = editingItem ? "PUT" : "POST";
+      const body = editingItem
+        ? { ...formData, mediaSrc, mediaPoster, id: editingItem.id }
+        : { ...formData, mediaSrc, mediaPoster };
+
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      setIsModalOpen(false);
+      setEditingItem(null);
+      resetForm();
+      fetchGallery();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Gagal menyimpan data. Silakan coba lagi.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleEdit = (item: GalleryItem) => {
@@ -77,6 +129,8 @@ export default function GalleryPage() {
       mediaPoster: item.mediaPoster || "",
       mediaAlt: item.mediaAlt,
     });
+    setMediaPreview(item.mediaSrc);
+    setPosterPreview(item.mediaPoster || "");
     setIsModalOpen(true);
   };
 
@@ -84,6 +138,24 @@ export default function GalleryPage() {
     if (confirm("Yakin ingin menghapus item ini?")) {
       await fetch(`/api/admin/gallery?id=${id}`, { method: "DELETE" });
       fetchGallery();
+    }
+  };
+
+  const handleMediaFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setMediaFile(file);
+      const previewUrl = URL.createObjectURL(file);
+      setMediaPreview(previewUrl);
+    }
+  };
+
+  const handlePosterFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPosterFile(file);
+      const previewUrl = URL.createObjectURL(file);
+      setPosterPreview(previewUrl);
     }
   };
 
@@ -97,6 +169,10 @@ export default function GalleryPage() {
       mediaPoster: "",
       mediaAlt: "",
     });
+    setMediaFile(null);
+    setPosterFile(null);
+    setMediaPreview("");
+    setPosterPreview("");
   };
 
   const openAddModal = () => {
@@ -263,27 +339,48 @@ export default function GalleryPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">URL Media</label>
+                <label className="block text-sm font-medium text-gray-200 mb-2">
+                  Upload Media {formData.mediaType === "image" ? "(Gambar)" : "(Video)"}
+                </label>
                 <input
-                  type="url"
-                  value={formData.mediaSrc}
-                  onChange={(e) => setFormData({ ...formData, mediaSrc: e.target.value })}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="https://example.com/image.jpg"
-                  required
+                  type="file"
+                  accept={formData.mediaType === "image" ? "image/jpeg,image/jpg,image/png,image/webp" : "video/mp4"}
+                  onChange={handleMediaFileChange}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-500 file:text-white hover:file:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required={!editingItem}
                 />
+                <p className="text-xs text-gray-400 mt-1">
+                  {formData.mediaType === "image" ? "Format: JPEG, PNG, WebP" : "Format: MP4"} - Max 10MB
+                </p>
               </div>
+
+              {mediaPreview && formData.mediaType === "image" && (
+                <div className="rounded-lg overflow-hidden">
+                  <img src={mediaPreview} alt="Preview" className="w-full h-48 object-cover" />
+                </div>
+              )}
+
+              {mediaPreview && formData.mediaType === "video" && (
+                <div className="rounded-lg overflow-hidden">
+                  <video src={mediaPreview} className="w-full h-48 object-cover" controls />
+                </div>
+              )}
 
               {formData.mediaType === "video" && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-2">URL Poster (opsional)</label>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">Upload Poster (opsional)</label>
                   <input
-                    type="url"
-                    value={formData.mediaPoster}
-                    onChange={(e) => setFormData({ ...formData, mediaPoster: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    placeholder="https://example.com/poster.jpg"
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handlePosterFileChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-500 file:text-white hover:file:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
+                  <p className="text-xs text-gray-400 mt-1">Gambar thumbnail untuk video</p>
+                  {posterPreview && (
+                    <div className="rounded-lg overflow-hidden mt-2">
+                      <img src={posterPreview} alt="Poster Preview" className="w-full h-32 object-cover" />
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -299,25 +396,31 @@ export default function GalleryPage() {
                 />
               </div>
 
-              {formData.mediaSrc && formData.mediaType === "image" && (
-                <div className="rounded-lg overflow-hidden">
-                  <img src={formData.mediaSrc} alt="Preview" className="w-full h-48 object-cover" />
-                </div>
-              )}
-
               <div className="flex space-x-3 pt-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 bg-white/10 text-white py-3 px-4 rounded-lg hover:bg-white/20 transition-colors"
+                  disabled={uploading}
+                  className="flex-1 bg-white/10 text-white py-3 px-4 rounded-lg hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-4 rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all"
+                  disabled={uploading}
+                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-4 rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {editingItem ? "Simpan Perubahan" : "Tambah Item"}
+                  {uploading ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Mengupload...
+                    </>
+                  ) : (
+                    editingItem ? "Simpan Perubahan" : "Tambah Item"
+                  )}
                 </button>
               </div>
             </form>
