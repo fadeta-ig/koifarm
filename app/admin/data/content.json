@@ -31,13 +31,14 @@
   ],
   "gallery": [
     {
-      "id": "1",
       "title": "Tosai Kohaku 32cm",
       "tag": "Ready",
       "accent": "from-orange-400 via-rose-400 to-sky-400",
       "mediaType": "image",
-      "mediaSrc": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=900&q=80",
-      "mediaAlt": "Foto koi Kohaku berwarna merah dan putih"
+      "mediaSrc": "https://storage.bekoifarm.co.id/2025/02/WhatsApp-Image-2025-01-23-at-15.04.01-752x1024.jpeg",
+      "mediaPoster": "",
+      "mediaAlt": "Foto koi Kohaku berwarna merah dan putih",
+      "id": "1"
     },
     {
       "id": "2",
