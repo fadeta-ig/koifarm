@@ -56,7 +56,7 @@ Landing page menampilkan katalog awal Asyifa Koi Farm yang fokus pada pengenalan
 
 ## Saran Pengembangan Lanjutan
 1. **Integrasi Data Dinamis**
-   - Sambungkan data varietas, galeri, dan testimoni ke API Bagisto agar konten mudah diperbarui tanpa rebuild.
+   - Sambungkan data varietas, galeri, dan testimoni ke admin panel(buat admin panel sederhana untuk field input) agar konten mudah diperbarui tanpa rebuild.
    - Pastikan caching ISR/SSR untuk menjaga performa saat data sering berubah.
 
 2. **Halaman Katalog & Detail**
@@ -75,10 +75,7 @@ Landing page menampilkan katalog awal Asyifa Koi Farm yang fokus pada pengenalan
    - Tambah metadata terstruktur (schema Product, Organization) dan `next-sitemap` untuk sitemap otomatis.
    - Evaluasi penggunaan `next/image` CDN dan implementasi `priority` hanya untuk media kritikal guna menjaga LCP di bawah 2,5 detik.
 
-6. **Keamanan & Formulir**
-   - Ketika menambahkan formulir kunjungan, gunakan validasi sisi klien dan server, rate limiting, serta proteksi spam (reCAPTCHA atau hCaptcha).
-
-7. **Testing & QA**
+6. **Testing & QA**
    - Siapkan test Storybook/Playwright untuk memastikan konsistensi UI.
    - Tambah unit test untuk utilitas (contoh generator template WhatsApp) dan snapshot test untuk komponen utama.
 
