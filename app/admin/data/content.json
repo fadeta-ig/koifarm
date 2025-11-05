@@ -1,0 +1,85 @@
+{
+  "varieties": [
+    {
+      "id": "1",
+      "name": "Kohaku",
+      "description": "Kontras merah-putih dengan grade show.",
+      "preset": "?variety=Kohaku&grade=Show",
+      "media": "https://images.unsplash.com/photo-1544551763-46a013bb82ce?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "2",
+      "name": "Taisho Sanke",
+      "description": "Motif tiga warna dengan sumi teratur.",
+      "preset": "?variety=Taisho%20Sanke&size_cm=45-60",
+      "media": "https://images.unsplash.com/photo-1517130038641-a774d04afb3c?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "3",
+      "name": "Showa Sanshoku",
+      "description": "Pattern dinamis untuk kontes.",
+      "preset": "?variety=Showa&grade=High",
+      "media": "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "4",
+      "name": "Tancho",
+      "description": "Mahkota merah solid, simbol keberuntungan.",
+      "preset": "?variety=Tancho&availability=Ready",
+      "media": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "1",
+      "title": "Tosai Kohaku 32cm",
+      "tag": "Ready",
+      "accent": "from-orange-400 via-rose-400 to-sky-400",
+      "mediaType": "image",
+      "mediaSrc": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=900&q=80",
+      "mediaAlt": "Foto koi Kohaku berwarna merah dan putih"
+    },
+    {
+      "id": "2",
+      "title": "Nisai Showa 58cm",
+      "tag": "Reserved",
+      "accent": "from-sky-500 via-indigo-500 to-purple-500",
+      "mediaType": "video",
+      "mediaSrc": "https://cdn.coverr.co/videos/coverr-koi-fish-swimming-5181/1080p.mp4",
+      "mediaPoster": "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=900&q=80",
+      "mediaAlt": "Video koi Showa berenang di kolam"
+    },
+    {
+      "id": "3",
+      "title": "Tancho 45cm",
+      "tag": "Ready",
+      "accent": "from-rose-400 via-orange-300 to-amber-400",
+      "mediaType": "image",
+      "mediaSrc": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
+      "mediaAlt": "Foto koi Tancho dengan pola merah bulat di kepala"
+    },
+    {
+      "id": "4",
+      "title": "Shiro Utsuri 63cm",
+      "tag": "Sold",
+      "accent": "from-slate-500 via-slate-700 to-slate-900",
+      "mediaType": "image",
+      "mediaSrc": "https://images.unsplash.com/photo-1478694206463-91f014d63e19?auto=format&fit=crop&w=900&q=80",
+      "mediaAlt": "Foto koi Shiro Utsuri hitam putih di kolam"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Hendra S.",
+      "title": "Juara Koi Show Surabaya 2024",
+      "message": "Varietas Showa dari Asyifa Koi Farm tampil maksimal di kontes. Tim memberi panduan grooming yang detail."
+    },
+    {
+      "id": "2",
+      "name": "Maya & Riko",
+      "title": "Collector Jakarta",
+      "message": "Suka sekali dengan transparansi data kesehatan dan update video rutin sebelum pengiriman."
+    }
+  ]
+}

@@ -3,18 +3,32 @@ import Link from "next/link";
 
 import GlassPanel from "../components/glass-panel";
 import SectionHeading from "../components/section-heading";
-import { sectionCopies, varietyHighlights } from "../data/landing-content";
+import { sectionCopies } from "../data/landing-content";
 
-export default function VarietySection() {
+async function getVarieties() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/content`, {
+      next: { revalidate: 60 }
+    });
+    const data = await res.json();
+    return data.varieties || [];
+  } catch (error) {
+    console.error("Failed to fetch varieties:", error);
+    return [];
+  }
+}
+
+export default async function VarietySection() {
   const copy = sectionCopies.varieties;
+  const varietyHighlights = await getVarieties();
 
   return (
     <section id="varietas" className="flex flex-col gap-10">
       <SectionHeading {...copy} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {varietyHighlights.map((variety) => (
+        {varietyHighlights.map((variety: any) => (
           <GlassPanel
-            key={variety.name}
+            key={variety.id}
             className="flex flex-col border-white/40 bg-white/25 p-6"
           >
             <div className="flex flex-col gap-4">
