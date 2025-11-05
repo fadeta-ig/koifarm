@@ -39,8 +39,8 @@ Landing page menampilkan katalog awal Asyifa Koi Farm yang fokus pada pengenalan
 - Mendukung image dan video (contoh video Showa 58cm dengan poster fallback).
 
 ### Kunjungan Farm (`#kunjungan`)
-- Informasi alamat: Jl. Raya Parung KM 24, Bogor.
-- Jadwal kunjungan: by appointment, Senin–Sabtu 09.00–16.00 WIB.
+- Informasi alamat: (https://maps.app.goo.gl/tYiepYHu3Ucbgcbu9)
+- Jadwal kunjungan: by appointment, Senin–Sabtu 09.00–17.00 WIB.
 - Tautan peta menuju Google Maps.
 - CTA WhatsApp tambahan untuk menjadwalkan kunjungan.
 
