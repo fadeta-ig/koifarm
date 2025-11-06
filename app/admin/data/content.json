@@ -1,9 +1,5 @@
 {
   "hero": {
-    "mediaSrc": "/uploads/1762409811416-front-view-skin-care-product-wooden-decorative-piece.webp",
-    "mediaAlt": "Foto close-up koi berwarna oranye putih berenang",
-    "badge": "Tersertifikasi Bloodline Juara",
-    "badgeSubtext": "Kemitraan langsung dengan breeder Jepang",
     "title": "Koi Premium Terbaik",
     "description": "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
     "stats": [
@@ -18,6 +14,24 @@
       {
         "label": "Tingkat Survival",
         "value": "99%"
+      }
+    ],
+    "featureCards": [
+      {
+        "title": "Tersertifikasi Bloodline Juara",
+        "description": "Kemitraan langsung dengan breeder Jepang"
+      },
+      {
+        "title": "Garansi Kualitas",
+        "description": "Data kesehatan lengkap dan jaminan kualitas terbaik"
+      },
+      {
+        "title": "Pendampingan Ahli",
+        "description": "Konsultasi gratis dari expert koi berpengalaman"
+      },
+      {
+        "title": "Pengiriman Aman",
+        "description": "Sistem packing professional ke seluruh Indonesia"
       }
     ]
   },

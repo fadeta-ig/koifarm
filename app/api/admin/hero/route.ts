@@ -26,16 +26,18 @@ export async function PUT(request: NextRequest) {
     const data = JSON.parse(content);
 
     data.hero = {
-      mediaSrc: body.mediaSrc,
-      mediaAlt: body.mediaAlt,
-      badge: body.badge,
-      badgeSubtext: body.badgeSubtext,
       title: body.title || "Koi Premium Terbaik",
       description: body.description || "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: body.stats || [
         { label: "Koi Siap Kirim", value: "120+" },
         { label: "Bloodline Juara", value: "18" },
         { label: "Tingkat Survival", value: "99%" },
+      ],
+      featureCards: body.featureCards || [
+        { title: "Tersertifikasi Bloodline Juara", description: "Kemitraan langsung dengan breeder Jepang" },
+        { title: "Garansi Kualitas", description: "Data kesehatan lengkap dan jaminan kualitas terbaik" },
+        { title: "Pendampingan Ahli", description: "Konsultasi gratis dari expert koi berpengalaman" },
+        { title: "Pengiriman Aman", description: "Sistem packing professional ke seluruh Indonesia" },
       ],
     };
 
