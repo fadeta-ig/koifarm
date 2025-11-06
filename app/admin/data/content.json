@@ -16,13 +16,6 @@
   },
   "varieties": [
     {
-      "id": "1",
-      "name": "Kohaku",
-      "description": "Kontras merah-putih dengan grade show.",
-      "preset": "?variety=Kohaku&grade=Show",
-      "media": "https://images.unsplash.com/photo-1544551763-46a013bb82ce?auto=format&fit=crop&w=900&q=80"
-    },
-    {
       "id": "2",
       "name": "Taisho Sanke",
       "description": "Motif tiga warna dengan sumi teratur.",
