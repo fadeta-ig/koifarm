@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navigationLinks } from "../data/landing-content";
 
 interface ContactData {
   address: string;
@@ -12,6 +11,11 @@ interface ContactData {
   latitude: string;
   longitude: string;
   mapUrl: string;
+}
+
+interface NavLink {
+  label: string;
+  href: string;
 }
 
 export default function Footer() {
@@ -25,8 +29,17 @@ export default function Footer() {
     mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
   });
 
+  const [navigationLinks, setNavigationLinks] = useState<NavLink[]>([
+    { label: "Beranda", href: "/" },
+    { label: "Produk", href: "/products" },
+    { label: "Tentang", href: "/about" },
+    { label: "Galeri", href: "/gallery" },
+    { label: "Testimoni", href: "/testimonials" },
+    { label: "Kontak", href: "/contact" },
+  ]);
+
   useEffect(() => {
-    // Fetch contact data from API
+    // Fetch contact data and navigation links from API
     fetch("/api/content")
       .then((res) => res.json())
       .then((data) => {
@@ -41,8 +54,11 @@ export default function Footer() {
             mapUrl: data.contact.mapUrl,
           });
         }
+        if (data.navigationLinks) {
+          setNavigationLinks(data.navigationLinks);
+        }
       })
-      .catch((error) => console.error("Error fetching contact data:", error));
+      .catch((error) => console.error("Error fetching content data:", error));
   }, []);
   const handleWhatsAppClick = () => {
     const waUrl = `https://wa.me/${contactData.whatsappNumber}?text=${encodeURIComponent(contactData.whatsappTemplate)}`;
