@@ -29,8 +29,27 @@ async function getHeroData() {
   }
 }
 
+async function getContactData() {
+  try {
+    const contentPath = path.join(process.cwd(), "app/admin/data/content.json");
+    const content = await readFile(contentPath, "utf-8");
+    const data = JSON.parse(content);
+    return data.contact || {
+      whatsappNumber: "6281934301918",
+      whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
+    };
+  } catch (error) {
+    console.error("Error reading contact data:", error);
+    return {
+      whatsappNumber: "6281934301918",
+      whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
+    };
+  }
+}
+
 export default async function HeroSection() {
   const heroData = await getHeroData();
+  const contactData = await getContactData();
   return (
     <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -62,7 +81,11 @@ export default async function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <WhatsAppButton label="Konsultasi Gratis" />
+              <WhatsAppButton
+                label="Konsultasi Gratis"
+                whatsappNumber={contactData.whatsappNumber}
+                whatsappTemplate={contactData.whatsappTemplate}
+              />
               <Link
                 href="/products"
                 className="group inline-flex items-center gap-2 rounded-2xl border border-white/40 bg-white/60 px-8 py-4 text-base font-semibold text-slate-700 shadow-[0_8px_24px_0_rgba(15,23,42,0.1)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(234,88,12,0.15)] hover:border-orange-200/60"

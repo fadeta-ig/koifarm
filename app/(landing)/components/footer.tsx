@@ -1,9 +1,34 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { navigationLinks } from "../data/landing-content";
 
+interface ContactData {
+  address: string;
+  schedule: string;
+}
+
 export default function Footer() {
+  const [contactData, setContactData] = useState<ContactData>({
+    address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
+    schedule: "Senin - Sabtu, 09:00 - 16:00",
+  });
+
+  useEffect(() => {
+    // Fetch contact data from API
+    fetch("/api/content")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.contact) {
+          setContactData({
+            address: data.contact.address,
+            schedule: data.contact.schedule,
+          });
+        }
+      })
+      .catch((error) => console.error("Error fetching contact data:", error));
+  }, []);
   return (
     <footer className="relative mt-20 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -68,13 +93,13 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-sm">Jl. Raya Parung KM 24, Bogor</span>
+                  <span className="text-sm">{contactData.address}</span>
                 </p>
                 <p className="flex items-start gap-2">
                   <svg className="mt-1 h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="text-sm">Senin - Sabtu, 09:00 - 16:00</span>
+                  <span className="text-sm">{contactData.schedule}</span>
                 </p>
               </div>
             </div>

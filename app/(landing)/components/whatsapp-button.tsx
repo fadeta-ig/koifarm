@@ -9,6 +9,8 @@ interface WhatsAppButtonProps {
   label: string;
   variant?: WhatsAppVariant;
   className?: string;
+  whatsappNumber?: string;
+  whatsappTemplate?: string;
 }
 
 const VARIANT_STYLES: Record<WhatsAppVariant, string> = {
@@ -22,13 +24,18 @@ export default function WhatsAppButton({
   label,
   variant = "primary",
   className = "",
+  whatsappNumber,
+  whatsappTemplate,
 }: WhatsAppButtonProps) {
   const baseStyle =
     "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[transform,box-shadow] motion-safe:hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 
+  const finalNumber = whatsappNumber || WHATSAPP_NUMBER;
+  const finalTemplate = whatsappTemplate || WHATSAPP_TEMPLATE;
+
   return (
     <Link
-      href={buildWhatsAppLink(WHATSAPP_NUMBER, WHATSAPP_TEMPLATE)}
+      href={buildWhatsAppLink(finalNumber, finalTemplate)}
       className={`${baseStyle} ${VARIANT_STYLES[variant]} ${className}`}
       aria-label="Hubungi Asyifa Koi Farm via WhatsApp"
     >
