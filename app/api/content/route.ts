@@ -16,6 +16,3 @@ export async function GET() {
     );
   }
 }
-
-// Enable static generation with revalidation
-export const revalidate = 60; // Revalidate every 60 seconds
