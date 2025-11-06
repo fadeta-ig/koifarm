@@ -1,17 +1,19 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 interface LiquidCardProps {
   children: ReactNode;
   className?: string;
   variant?: "default" | "hover" | "gradient";
+  style?: CSSProperties;
 }
 
 export default function LiquidCard({
   children,
   className = "",
-  variant = "default"
+  variant = "default",
+  style
 }: LiquidCardProps) {
   const baseClasses = "relative rounded-3xl overflow-hidden transition-all duration-500";
 
@@ -22,7 +24,7 @@ export default function LiquidCard({
   };
 
   return (
-    <div className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
+    <div className={`${baseClasses} ${variantClasses[variant]} ${className}`} style={style}>
       {/* Liquid effect overlay */}
       <div className="absolute inset-0 opacity-40 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-400/20 via-transparent to-cyan-400/20 animate-pulse" />
