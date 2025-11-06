@@ -63,6 +63,16 @@
       "mediaType": "image",
       "mediaSrc": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
       "mediaAlt": "Foto koi Tancho dengan pola merah bulat di kepala"
+    },
+    {
+      "id": "1762398139934",
+      "title": "F",
+      "tag": "Ready",
+      "accent": "from-blue-400 to-blue-600",
+      "mediaType": "image",
+      "mediaSrc": "/uploads/1762398139906-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+      "mediaPoster": "",
+      "mediaAlt": "s"
     }
   ],
   "testimonials": [
