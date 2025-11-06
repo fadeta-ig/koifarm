@@ -20,8 +20,6 @@ async function getVarieties() {
   }
 }
 
-export const revalidate = 60; // Revalidate every 60 seconds
-
 export default async function VarietySection() {
   const copy = sectionCopies.varieties;
   const varietyHighlights = await getVarieties();
