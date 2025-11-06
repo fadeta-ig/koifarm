@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
         hostname: "storage.bekoifarm.co.id",
       },
     ],
+    unoptimized: false,
+    formats: ['image/webp', 'image/avif'],
   },
 };
 
