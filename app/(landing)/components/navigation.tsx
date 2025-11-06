@@ -2,14 +2,38 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { navigationLinks } from "../data/landing-content";
 import WhatsAppButton from "./whatsapp-button";
+
+interface NavLink {
+  label: string;
+  href: string;
+}
 
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navigationLinks, setNavigationLinks] = useState<NavLink[]>([
+    { label: "Beranda", href: "/" },
+    { label: "Produk", href: "/products" },
+    { label: "Tentang", href: "/about" },
+    { label: "Galeri", href: "/gallery" },
+    { label: "Testimoni", href: "/testimonials" },
+    { label: "Kontak", href: "/contact" },
+  ]);
+
+  useEffect(() => {
+    // Fetch navigation links from API
+    fetch("/api/content")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.navigationLinks) {
+          setNavigationLinks(data.navigationLinks);
+        }
+      })
+      .catch((error) => console.error("Error fetching navigation links:", error));
+  }, []);
 
   return (
     <header className="sticky top-6 z-50 mx-auto w-full max-w-7xl px-4 sm:px-6">
