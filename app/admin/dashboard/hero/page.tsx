@@ -42,7 +42,8 @@ export default function HeroPage() {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to upload file");
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to upload file");
     }
 
     const data = await response.json();
@@ -90,7 +91,8 @@ export default function HeroPage() {
       fetchHeroData();
     } catch (error) {
       console.error("Error saving hero data:", error);
-      alert("Gagal menyimpan data. Silakan coba lagi.");
+      const errorMessage = error instanceof Error ? error.message : "Gagal menyimpan data. Silakan coba lagi.";
+      alert(errorMessage);
     } finally {
       setSaving(false);
       setUploading(false);
