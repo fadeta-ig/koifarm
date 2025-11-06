@@ -18,41 +18,15 @@ export const heroStats = [
   { label: "Tingkat Survival", value: "99%" },
 ] as const;
 
-const UNSPLASH_PARAMS = "?auto=format&fit=crop&w=900&q=80" as const;
-
 export const heroMedia = {
-  src: `https://images.unsplash.com/photo-1506345282097-5b614c0371a4${UNSPLASH_PARAMS}`,
+  src: "/uploads/placeholder.jpg",
   alt: "Foto close-up koi berwarna oranye putih berenang",
   blurDataURL:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z/C/HwAF/gL+Lp+gfQAAAABJRU5ErkJggg==",
 } as const;
 
-export const varietyHighlights = [
-  {
-    name: "Kohaku",
-    description: "Kontras merah-putih dengan grade show.",
-    preset: "?variety=Kohaku&grade=Show",
-    media: `https://images.unsplash.com/photo-1544551763-46a013bb82ce${UNSPLASH_PARAMS}`,
-  },
-  {
-    name: "Taisho Sanke",
-    description: "Motif tiga warna dengan sumi teratur.",
-    preset: "?variety=Taisho%20Sanke&size_cm=45-60",
-    media: `https://images.unsplash.com/photo-1517130038641-a774d04afb3c${UNSPLASH_PARAMS}`,
-  },
-  {
-    name: "Showa Sanshoku",
-    description: "Pattern dinamis untuk kontes.",
-    preset: "?variety=Showa&grade=High",
-    media: `https://images.unsplash.com/photo-1520880867055-1e30d1cb001c${UNSPLASH_PARAMS}`,
-  },
-  {
-    name: "Tancho",
-    description: "Mahkota merah solid, simbol keberuntungan.",
-    preset: "?variety=Tancho&availability=Ready",
-    media: `https://images.unsplash.com/photo-1504593811423-6dd665756598${UNSPLASH_PARAMS}`,
-  },
-] as const;
+// Removed dummy data - use admin panel to add varieties
+export const varietyHighlights = [] as const;
 
 export const farmAdvantages = [
   {
@@ -114,49 +88,8 @@ export const testimonials = [
   },
 ] as const;
 
-export const galleryItems = [
-  {
-    title: "Tosai Kohaku 32cm",
-    tag: "Ready",
-    accent: "from-orange-400 via-rose-400 to-sky-400",
-    media: {
-      type: "image" as const,
-      src: `https://images.unsplash.com/photo-1504608524841-42fe6f032b4b${UNSPLASH_PARAMS}`,
-      alt: "Foto koi Kohaku berwarna merah dan putih",
-    },
-  },
-  {
-    title: "Nisai Showa 58cm",
-    tag: "Reserved",
-    accent: "from-sky-500 via-indigo-500 to-purple-500",
-    media: {
-      type: "video" as const,
-      src: "https://cdn.coverr.co/videos/coverr-koi-fish-swimming-5181/1080p.mp4",
-      poster: `https://images.unsplash.com/photo-1520880867055-1e30d1cb001c${UNSPLASH_PARAMS}`,
-      alt: "Video koi Showa berenang di kolam",
-    },
-  },
-  {
-    title: "Tancho 45cm",
-    tag: "Ready",
-    accent: "from-rose-400 via-orange-300 to-amber-400",
-    media: {
-      type: "image" as const,
-      src: `https://images.unsplash.com/photo-1518837695005-2083093ee35b${UNSPLASH_PARAMS}`,
-      alt: "Foto koi Tancho dengan pola merah bulat di kepala",
-    },
-  },
-  {
-    title: "Shiro Utsuri 63cm",
-    tag: "Sold",
-    accent: "from-slate-500 via-slate-700 to-slate-900",
-    media: {
-      type: "image" as const,
-      src: `https://images.unsplash.com/photo-1478694206463-91f014d63e19${UNSPLASH_PARAMS}`,
-      alt: "Foto koi Shiro Utsuri hitam putih di kolam",
-    },
-  },
-] as const;
+// Removed dummy data - use admin panel to add gallery items
+export const galleryItems = [] as const;
 
 export const visitInfo = {
   address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",

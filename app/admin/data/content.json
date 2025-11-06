@@ -1,6 +1,6 @@
 {
   "hero": {
-    "mediaSrc": "https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=900&q=80",
+    "mediaSrc": "/uploads/1762398139906-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
     "mediaAlt": "Foto close-up koi berwarna oranye putih berenang",
     "badge": "Tersertifikasi Bloodline Juara",
     "badgeSubtext": "Kemitraan langsung dengan breeder Jepang",
@@ -122,40 +122,8 @@
       "description": "Atur janji temu untuk melihat langsung koleksi koi dan fasilitas karantina kami."
     }
   },
-  "varieties": [
-    {
-      "id": "2",
-      "name": "Taisho Sanke",
-      "description": "Motif tiga warna dengan sumi teratur.",
-      "preset": "?variety=Taisho%20Sanke&size_cm=45-60",
-      "media": "https://images.unsplash.com/photo-1517130038641-a774d04afb3c?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-      "id": "3",
-      "name": "Showa Sanshoku",
-      "description": "Pattern dinamis untuk kontes.",
-      "preset": "?variety=Showa&grade=High",
-      "media": "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-      "id": "4",
-      "name": "Tancho",
-      "description": "Mahkota merah solid, simbol keberuntungan.",
-      "preset": "?variety=Tancho&availability=Ready",
-      "media": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80"
-    }
-  ],
-  "gallery": [
-    {
-      "id": "3",
-      "title": "Tancho 45cm",
-      "tag": "Ready",
-      "accent": "from-rose-400 via-orange-300 to-amber-400",
-      "mediaType": "image",
-      "mediaSrc": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
-      "mediaAlt": "Foto koi Tancho dengan pola merah bulat di kepala"
-    }
-  ],
+  "varieties": [],
+  "gallery": [],
   "testimonials": [
     {
       "id": "1",
