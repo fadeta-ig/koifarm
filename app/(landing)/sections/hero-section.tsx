@@ -147,7 +147,7 @@ export default async function HeroSection() {
           </div>
 
           {/* Right Image */}
-          <div className="relative lg:h-[600px]">
+          <div className="relative h-[500px] lg:h-[600px]">
             {/* Decorative elements */}
             <div className="absolute -inset-4 bg-gradient-to-br from-orange-400/20 via-transparent to-cyan-400/20 rounded-3xl blur-3xl" />
 
