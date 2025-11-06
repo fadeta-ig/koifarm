@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "6281298765432";
+export const WHATSAPP_NUMBER = "6281934301918";
 
 export const WHATSAPP_TEMPLATE =
   "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.";
@@ -159,9 +159,9 @@ export const galleryItems = [
 ] as const;
 
 export const visitInfo = {
-  address: "Jl. Raya Parung KM 24, Bogor, Jawa Barat",
+  address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
   schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
-  mapUrl: "https://maps.google.com/?q=Asyifa+Koi+Farm",
+  mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
 } as const;
 
 export const sectionCopies = {
