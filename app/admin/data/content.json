@@ -1,23 +1,9 @@
 {
   "hero": {
-    "mediaSrc": "/uploads/1762398139906-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+    "mediaSrc": "/uploads/1762403558725-front-view-skin-care-product-wooden-decorative-piece.webp",
     "mediaAlt": "Foto close-up koi berwarna oranye putih berenang",
     "badge": "Tersertifikasi Bloodline Juara",
-    "badgeSubtext": "Kemitraan langsung dengan breeder Jepang",
-    "stats": [
-      {
-        "label": "Koi Siap Kirim",
-        "value": "120+"
-      },
-      {
-        "label": "Bloodline Juara",
-        "value": "18"
-      },
-      {
-        "label": "Tingkat Survival",
-        "value": "99%"
-      }
-    ]
+    "badgeSubtext": "Kemitraan langsung dengan breeder Jepang"
   },
   "contact": {
     "whatsappNumber": "6281934301918",
@@ -131,7 +117,18 @@
       "media": "/uploads/1762403198204-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg"
     }
   ],
-  "gallery": [],
+  "gallery": [
+    {
+      "id": "1762403601640",
+      "title": "Tosai Kohaku",
+      "tag": "Ready",
+      "accent": "from-blue-400 to-blue-600",
+      "mediaType": "image",
+      "mediaSrc": "/uploads/1762403601618-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+      "mediaPoster": "",
+      "mediaAlt": "tes"
+    }
+  ],
   "testimonials": [
     {
       "id": "1",
