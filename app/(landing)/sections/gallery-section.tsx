@@ -4,28 +4,41 @@ import path from "path";
 
 import GlassPanel from "../components/glass-panel";
 import SectionHeading from "../components/section-heading";
-import { sectionCopies } from "../data/landing-content";
 
-async function getGallery() {
+async function getContentData() {
   try {
     // Read directly from file system for reliable build-time and runtime data
     const dataPath = path.join(process.cwd(), "app/admin/data/content.json");
     const fileContents = await fs.readFile(dataPath, "utf8");
     const data = JSON.parse(fileContents);
-    return data.gallery || [];
+    return {
+      gallery: data.gallery || [],
+      sectionCopy: data.sectionCopies?.gallery || {
+        eyebrow: "Media",
+        title: "Galeri Kolam",
+        description: "Foto dan video dummy menampilkan suasana kolam dan koi pilihan untuk ilustrasi katalog.",
+      },
+    };
   } catch (error) {
     console.error("Failed to fetch gallery:", error);
-    return [];
+    return {
+      gallery: [],
+      sectionCopy: {
+        eyebrow: "Media",
+        title: "Galeri Kolam",
+        description: "Foto dan video dummy menampilkan suasana kolam dan koi pilihan untuk ilustrasi katalog.",
+      },
+    };
   }
 }
 
 export default async function GallerySection() {
-  const copy = sectionCopies.gallery;
-  const galleryItems = await getGallery();
+  const { gallery, sectionCopy } = await getContentData();
+  const galleryItems = gallery;
 
   return (
     <section id="galeri" className="flex flex-col gap-10">
-      <SectionHeading {...copy} />
+      <SectionHeading {...sectionCopy} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {galleryItems.map((item: any) => (
           <GlassPanel key={item.id} className="flex flex-col border-white/30 bg-white/20 p-4">

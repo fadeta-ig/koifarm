@@ -5,28 +5,41 @@ import path from "path";
 
 import GlassPanel from "../components/glass-panel";
 import SectionHeading from "../components/section-heading";
-import { sectionCopies } from "../data/landing-content";
 
-async function getVarieties() {
+async function getContentData() {
   try {
     // Read directly from file system for reliable build-time and runtime data
     const dataPath = path.join(process.cwd(), "app/admin/data/content.json");
     const fileContents = await fs.readFile(dataPath, "utf8");
     const data = JSON.parse(fileContents);
-    return data.varieties || [];
+    return {
+      varieties: data.varieties || [],
+      sectionCopy: data.sectionCopies?.varieties || {
+        eyebrow: "Varietas",
+        title: "Varietas Unggulan",
+        description: "Pilih varietas favorit dengan preset filter siap pakai dan lihat status stok terbaru.",
+      },
+    };
   } catch (error) {
     console.error("Failed to fetch varieties:", error);
-    return [];
+    return {
+      varieties: [],
+      sectionCopy: {
+        eyebrow: "Varietas",
+        title: "Varietas Unggulan",
+        description: "Pilih varietas favorit dengan preset filter siap pakai dan lihat status stok terbaru.",
+      },
+    };
   }
 }
 
 export default async function VarietySection() {
-  const copy = sectionCopies.varieties;
-  const varietyHighlights = await getVarieties();
+  const { varieties, sectionCopy } = await getContentData();
+  const varietyHighlights = varieties;
 
   return (
     <section id="varietas" className="flex flex-col gap-10">
-      <SectionHeading {...copy} />
+      <SectionHeading {...sectionCopy} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {varietyHighlights.map((variety: any) => (
           <GlassPanel

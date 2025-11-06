@@ -5,7 +5,6 @@ import path from "path";
 
 import LiquidCard from "../components/liquid-card";
 import WhatsAppButton from "../components/whatsapp-button";
-import { heroStats } from "../data/landing-content";
 
 async function getHeroData() {
   try {
@@ -17,6 +16,11 @@ async function getHeroData() {
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+      stats: [
+        { label: "Koi Siap Kirim", value: "120+" },
+        { label: "Bloodline Juara", value: "18" },
+        { label: "Tingkat Survival", value: "99%" },
+      ],
     };
   } catch (error) {
     console.error("Error reading hero data:", error);
@@ -25,6 +29,11 @@ async function getHeroData() {
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+      stats: [
+        { label: "Koi Siap Kirim", value: "120+" },
+        { label: "Bloodline Juara", value: "18" },
+        { label: "Tingkat Survival", value: "99%" },
+      ],
     };
   }
 }
@@ -50,6 +59,7 @@ async function getContactData() {
 export default async function HeroSection() {
   const heroData = await getHeroData();
   const contactData = await getContactData();
+  const heroStats = heroData.stats || [];
   return (
     <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
