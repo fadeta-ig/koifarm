@@ -7,22 +7,24 @@ interface StatItem {
   value: string;
 }
 
+interface FeatureCard {
+  title: string;
+  description: string;
+}
+
 interface HeroData {
-  mediaSrc: string;
-  mediaAlt: string;
   badge: string;
   badgeSubtext: string;
   title: string;
   description: string;
   stats: StatItem[];
+  featureCards: FeatureCard[];
 }
 
 export default function HeroPage() {
   const [heroData, setHeroData] = useState<HeroData>({
-    mediaSrc: "",
-    mediaAlt: "",
-    badge: "",
-    badgeSubtext: "",
+    badge: "Tersertifikasi Bloodline Juara",
+    badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
     title: "Koi Premium Terbaik",
     description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
     stats: [
@@ -30,10 +32,13 @@ export default function HeroPage() {
       { label: "Bloodline Juara", value: "18" },
       { label: "Tingkat Survival", value: "99%" },
     ],
+    featureCards: [
+      { title: "Tersertifikasi Bloodline Juara", description: "Kemitraan langsung dengan breeder Jepang" },
+      { title: "Garansi Kualitas", description: "Data kesehatan lengkap dan jaminan kualitas terbaik" },
+      { title: "Pendampingan Ahli", description: "Konsultasi gratis dari expert koi berpengalaman" },
+      { title: "Pengiriman Aman", description: "Sistem packing professional ke seluruh Indonesia" },
+    ],
   });
-  const [mediaFile, setMediaFile] = useState<File | null>(null);
-  const [uploading, setUploading] = useState(false);
-  const [mediaPreview, setMediaPreview] = useState<string>("");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -44,10 +49,8 @@ export default function HeroPage() {
     const res = await fetch("/api/admin/hero");
     const data = await res.json();
     setHeroData({
-      mediaSrc: data.mediaSrc || "",
-      mediaAlt: data.mediaAlt || "",
-      badge: data.badge || "",
-      badgeSubtext: data.badgeSubtext || "",
+      badge: data.badge || "Tersertifikasi Bloodline Juara",
+      badgeSubtext: data.badgeSubtext || "Kemitraan langsung dengan breeder Jepang",
       title: data.title || "Koi Premium Terbaik",
       description: data.description || "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: data.stats || [
@@ -55,35 +58,13 @@ export default function HeroPage() {
         { label: "Bloodline Juara", value: "18" },
         { label: "Tingkat Survival", value: "99%" },
       ],
+      featureCards: data.featureCards || [
+        { title: "Tersertifikasi Bloodline Juara", description: "Kemitraan langsung dengan breeder Jepang" },
+        { title: "Garansi Kualitas", description: "Data kesehatan lengkap dan jaminan kualitas terbaik" },
+        { title: "Pendampingan Ahli", description: "Konsultasi gratis dari expert koi berpengalaman" },
+        { title: "Pengiriman Aman", description: "Sistem packing professional ke seluruh Indonesia" },
+      ],
     });
-    setMediaPreview(data.mediaSrc || "");
-  };
-
-  const uploadFile = async (file: File): Promise<string> => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await fetch("/api/admin/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Failed to upload file");
-    }
-
-    const data = await response.json();
-    return data.url;
-  };
-
-  const handleMediaFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setMediaFile(file);
-      const previewUrl = URL.createObjectURL(file);
-      setMediaPreview(previewUrl);
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -91,30 +72,13 @@ export default function HeroPage() {
     setSaving(true);
 
     try {
-      let mediaSrc = heroData.mediaSrc;
-
-      // Upload media file if new file is selected
-      if (mediaFile) {
-        setUploading(true);
-        mediaSrc = await uploadFile(mediaFile);
-        setUploading(false);
-      }
-
-      // Validate that media source is provided
-      if (!mediaSrc) {
-        alert("Silakan upload file media terlebih dahulu");
-        setSaving(false);
-        return;
-      }
-
       await fetch("/api/admin/hero", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...heroData, mediaSrc }),
+        body: JSON.stringify(heroData),
       });
 
       alert("Hero section berhasil diperbarui!");
-      setMediaFile(null);
       fetchHeroData();
     } catch (error) {
       console.error("Error saving hero data:", error);
@@ -122,7 +86,6 @@ export default function HeroPage() {
       alert(errorMessage);
     } finally {
       setSaving(false);
-      setUploading(false);
     }
   };
 
@@ -131,50 +94,15 @@ export default function HeroPage() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-white mb-2">Hero Section</h1>
-        <p className="text-gray-400">Kelola foto dan teks di hero section landing page</p>
+        <p className="text-gray-400">Kelola konten teks dan feature cards di hero section landing page</p>
       </div>
 
       {/* Form */}
       <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
         <div className="p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Current Image Preview */}
-            {mediaPreview && (
-              <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Foto Hero Saat Ini</label>
-                <div className="rounded-lg overflow-hidden">
-                  <img src={mediaPreview} alt="Hero Preview" className="w-full h-64 object-cover" />
-                </div>
-              </div>
-            )}
-
-            {/* Upload New Image */}
-            <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Upload Foto Baru (Opsional)</label>
-              <input
-                type="file"
-                accept="image/jpeg,image/jpg,image/png,image/webp"
-                onChange={handleMediaFileChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <p className="text-xs text-gray-400 mt-1">Format: JPEG, PNG, WebP - Max 10MB</p>
-            </div>
-
-            {/* Alt Text */}
-            <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Deskripsi Alt Text</label>
-              <input
-                type="text"
-                value={heroData.mediaAlt}
-                onChange={(e) => setHeroData({ ...heroData, mediaAlt: e.target.value })}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Contoh: Foto close-up koi berenang"
-                required
-              />
-            </div>
-
             {/* Divider */}
-            <div className="border-t border-white/10 pt-6">
+            <div>
               <h3 className="text-lg font-semibold text-white mb-4">Konten Teks Hero</h3>
             </div>
 
@@ -204,31 +132,52 @@ export default function HeroPage() {
               />
             </div>
 
-            {/* Badge Text */}
-            <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Badge Teks (Judul Badge)</label>
-              <input
-                type="text"
-                value={heroData.badge}
-                onChange={(e) => setHeroData({ ...heroData, badge: e.target.value })}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Contoh: Tersertifikasi Bloodline Juara"
-                required
-              />
+            {/* Divider */}
+            <div className="border-t border-white/10 pt-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Feature Cards (4 Item)</h3>
+              <p className="text-sm text-gray-400 mb-4">Card yang ditampilkan di sisi kanan hero section</p>
             </div>
 
-            {/* Badge Subtext */}
-            <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Badge Subteks</label>
-              <input
-                type="text"
-                value={heroData.badgeSubtext}
-                onChange={(e) => setHeroData({ ...heroData, badgeSubtext: e.target.value })}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Contoh: Kemitraan langsung dengan breeder Jepang"
-                required
-              />
-            </div>
+            {/* Feature Cards */}
+            {heroData.featureCards.map((card, index) => (
+              <div key={index} className="space-y-3 p-4 bg-white/5 rounded-lg border border-white/10">
+                <h4 className="text-sm font-semibold text-gray-300">Feature Card {index + 1}</h4>
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                    Judul
+                  </label>
+                  <input
+                    type="text"
+                    value={card.title}
+                    onChange={(e) => {
+                      const newCards = [...heroData.featureCards];
+                      newCards[index].title = e.target.value;
+                      setHeroData({ ...heroData, featureCards: newCards });
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: Garansi Kualitas"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                    Deskripsi
+                  </label>
+                  <input
+                    type="text"
+                    value={card.description}
+                    onChange={(e) => {
+                      const newCards = [...heroData.featureCards];
+                      newCards[index].description = e.target.value;
+                      setHeroData({ ...heroData, featureCards: newCards });
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: Data kesehatan lengkap dan jaminan kualitas terbaik"
+                    required
+                  />
+                </div>
+              </div>
+            ))}
 
             {/* Divider */}
             <div className="border-t border-white/10 pt-6">
@@ -279,18 +228,10 @@ export default function HeroPage() {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                disabled={saving || uploading}
+                disabled={saving}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
-                {uploading ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Mengupload...</span>
-                  </>
-                ) : saving ? (
+                {saving ? (
                   <>
                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -322,7 +263,7 @@ export default function HeroPage() {
             <h3 className="text-sm font-semibold text-blue-400 mb-1">Informasi</h3>
             <p className="text-xs text-gray-300">
               Hero section adalah bagian pertama yang dilihat pengunjung di halaman beranda.
-              Pastikan foto berkualitas tinggi dan teks yang menarik untuk meningkatkan konversi.
+              Pastikan konten teks yang menarik dan feature cards yang informatif untuk meningkatkan konversi.
             </p>
           </div>
         </div>

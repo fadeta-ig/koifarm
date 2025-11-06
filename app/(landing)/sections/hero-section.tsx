@@ -11,10 +11,6 @@ async function getHeroData() {
     const content = await readFile(contentPath, "utf-8");
     const data = JSON.parse(content);
     return data.hero || {
-      mediaSrc: "/uploads/placeholder.jpg",
-      mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
-      badge: "Tersertifikasi Bloodline Juara",
-      badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
       title: "Koi Premium Terbaik",
       description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: [
@@ -22,20 +18,28 @@ async function getHeroData() {
         { label: "Bloodline Juara", value: "18" },
         { label: "Tingkat Survival", value: "99%" },
       ],
+      featureCards: [
+        { title: "Tersertifikasi Bloodline Juara", description: "Kemitraan langsung dengan breeder Jepang" },
+        { title: "Garansi Kualitas", description: "Data kesehatan lengkap dan jaminan kualitas terbaik" },
+        { title: "Pendampingan Ahli", description: "Konsultasi gratis dari expert koi berpengalaman" },
+        { title: "Pengiriman Aman", description: "Sistem packing professional ke seluruh Indonesia" },
+      ],
     };
   } catch (error) {
     console.error("Error reading hero data:", error);
     return {
-      mediaSrc: "/uploads/placeholder.jpg",
-      mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
-      badge: "Tersertifikasi Bloodline Juara",
-      badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
       title: "Koi Premium Terbaik",
       description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: [
         { label: "Koi Siap Kirim", value: "120+" },
         { label: "Bloodline Juara", value: "18" },
         { label: "Tingkat Survival", value: "99%" },
+      ],
+      featureCards: [
+        { title: "Tersertifikasi Bloodline Juara", description: "Kemitraan langsung dengan breeder Jepang" },
+        { title: "Garansi Kualitas", description: "Data kesehatan lengkap dan jaminan kualitas terbaik" },
+        { title: "Pendampingan Ahli", description: "Konsultasi gratis dari expert koi berpengalaman" },
+        { title: "Pengiriman Aman", description: "Sistem packing professional ke seluruh Indonesia" },
       ],
     };
   }
@@ -63,6 +67,24 @@ export default async function HeroSection() {
   const heroData = await getHeroData();
   const contactData = await getContactData();
   const heroStats = heroData.stats || [];
+  const featureCards = heroData.featureCards || [];
+
+  // Icon gradients for feature cards
+  const cardGradients = [
+    "from-orange-500 to-rose-500",
+    "from-cyan-500 to-blue-500",
+    "from-emerald-500 to-teal-500",
+    "from-violet-500 to-purple-500",
+  ];
+
+  // Icons for feature cards (SVG path data)
+  const cardIcons = [
+    "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+    "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
+    "M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4",
+  ];
+
   return (
     <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -153,84 +175,32 @@ export default async function HeroSection() {
             <div className="absolute bottom-20 left-10 h-48 w-48 bg-gradient-to-br from-orange-400/30 to-rose-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
             <div className="relative h-full flex flex-col justify-center gap-6">
-              {/* Feature Card 1 - Certificate */}
-              <LiquidCard
-                variant="gradient"
-                className="group p-6 hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-float"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
+              {featureCards.map((card: { title: string; description: string }, index: number) => (
+                <LiquidCard
+                  key={index}
+                  variant="gradient"
+                  className={`group p-6 hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-float ${
+                    index % 2 === 1 ? 'ml-8' : ''
+                  }`}
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br ${cardGradients[index]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                      <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={cardIcons[index]} />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm text-slate-600">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">
-                      {heroData.badge || "Tersertifikasi Bloodline Juara"}
-                    </h3>
-                    <p className="text-sm text-slate-600">
-                      {heroData.badgeSubtext || "Kemitraan langsung dengan breeder Jepang"}
-                    </p>
-                  </div>
-                </div>
-              </LiquidCard>
-
-              {/* Feature Card 2 - Shield/Guarantee */}
-              <LiquidCard
-                variant="gradient"
-                className="group p-6 hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-float ml-8"
-                style={{ animationDelay: '0.2s' }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">Garansi Kualitas</h3>
-                    <p className="text-sm text-slate-600">Data kesehatan lengkap dan jaminan kualitas terbaik</p>
-                  </div>
-                </div>
-              </LiquidCard>
-
-              {/* Feature Card 3 - Support */}
-              <LiquidCard
-                variant="gradient"
-                className="group p-6 hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-float"
-                style={{ animationDelay: '0.4s' }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">Pendampingan Ahli</h3>
-                    <p className="text-sm text-slate-600">Konsultasi gratis dari expert koi berpengalaman</p>
-                  </div>
-                </div>
-              </LiquidCard>
-
-              {/* Feature Card 4 - Delivery */}
-              <LiquidCard
-                variant="gradient"
-                className="group p-6 hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-float ml-8"
-                style={{ animationDelay: '0.6s' }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">Pengiriman Aman</h3>
-                    <p className="text-sm text-slate-600">Sistem packing professional ke seluruh Indonesia</p>
-                  </div>
-                </div>
-              </LiquidCard>
+                </LiquidCard>
+              ))}
             </div>
           </div>
         </div>
