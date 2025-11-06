@@ -1,16 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navigation from "../(landing)/components/navigation";
 import Footer from "../(landing)/components/footer";
 import Liquid3DBackground from "../(landing)/components/liquid-3d-background";
 import LiquidCard from "../(landing)/components/liquid-card";
-import { galleryItems } from "../(landing)/data/landing-content";
+
+interface GalleryItem {
+  id: string;
+  title: string;
+  tag: string;
+  accent: string;
+  mediaType: "image" | "video";
+  mediaSrc: string;
+  mediaPoster?: string;
+  mediaAlt: string;
+}
 
 export default function GalleryPage() {
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const filters = ["All", "Ready", "Reserved", "Sold"];
+
+  useEffect(() => {
+    fetchGalleryData();
+  }, []);
+
+  const fetchGalleryData = async () => {
+    try {
+      const response = await fetch("/api/admin/gallery");
+      if (response.ok) {
+        const data = await response.json();
+        setGalleryItems(data);
+      }
+    } catch (error) {
+      console.error("Error fetching gallery:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredItems =
     selectedFilter === "All"
@@ -63,70 +93,79 @@ export default function GalleryPage() {
             </div>
 
             {/* Gallery Grid */}
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredItems.map((item, index) => (
-                <LiquidCard
-                  key={item.title}
-                  variant="hover"
-                  className="group overflow-hidden p-0"
-                >
-                  <div className="relative aspect-square overflow-hidden">
-                    {item.media.type === "image" ? (
-                      <Image
-                        src={item.media.src}
-                        alt={item.media.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      />
-                    ) : (
-                      <video
-                        src={item.media.src}
-                        poster={item.media.poster}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      />
-                    )}
+            {loading ? (
+              <div className="flex items-center justify-center py-16">
+                <div className="text-center">
+                  <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-purple-500 border-r-transparent"></div>
+                  <p className="mt-4 text-slate-600">Memuat galeri...</p>
+                </div>
+              </div>
+            ) : (
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredItems.map((item, index) => (
+                  <LiquidCard
+                    key={item.id}
+                    variant="hover"
+                    className="group overflow-hidden p-0"
+                  >
+                    <div className="relative aspect-square overflow-hidden">
+                      {item.mediaType === "image" ? (
+                        <Image
+                          src={item.mediaSrc}
+                          alt={item.mediaAlt}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                      ) : (
+                        <video
+                          src={item.mediaSrc}
+                          poster={item.mediaPoster}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      )}
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                    {/* Status Badge */}
-                    <div className="absolute top-4 right-4">
-                      <div
-                        className={`rounded-full border border-white/40 px-4 py-2 backdrop-blur-xl ${
-                          item.tag === "Ready"
-                            ? "bg-green-500/80 text-white"
-                            : item.tag === "Reserved"
-                              ? "bg-orange-500/80 text-white"
-                              : "bg-slate-500/80 text-white"
-                        }`}
-                      >
-                        <span className="text-xs font-bold">{item.tag}</span>
+                      {/* Status Badge */}
+                      <div className="absolute top-4 right-4">
+                        <div
+                          className={`rounded-full border border-white/40 px-4 py-2 backdrop-blur-xl ${
+                            item.tag === "Ready"
+                              ? "bg-green-500/80 text-white"
+                              : item.tag === "Reserved"
+                                ? "bg-orange-500/80 text-white"
+                                : "bg-slate-500/80 text-white"
+                          }`}
+                        >
+                          <span className="text-xs font-bold">{item.tag}</span>
+                        </div>
+                      </div>
+
+                      {/* Title Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 translate-y-full p-6 transition-transform duration-300 group-hover:translate-y-0">
+                        <h3 className="text-xl font-bold text-white">
+                          {item.title}
+                        </h3>
+                        {item.mediaType === "video" && (
+                          <p className="mt-1 text-sm text-white/80">
+                            Video Preview
+                          </p>
+                        )}
                       </div>
                     </div>
-
-                    {/* Title Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 translate-y-full p-6 transition-transform duration-300 group-hover:translate-y-0">
-                      <h3 className="text-xl font-bold text-white">
-                        {item.title}
-                      </h3>
-                      {item.media.type === "video" && (
-                        <p className="mt-1 text-sm text-white/80">
-                          Video Preview
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </LiquidCard>
-              ))}
-            </div>
+                  </LiquidCard>
+                ))}
+              </div>
+            )}
 
             {/* Empty State */}
-            {filteredItems.length === 0 && (
+            {!loading && filteredItems.length === 0 && (
               <LiquidCard variant="gradient" className="p-16 text-center">
                 <div className="mx-auto max-w-md">
                   <div className="mb-4 text-6xl">🐟</div>
@@ -134,7 +173,9 @@ export default function GalleryPage() {
                     Tidak Ada Hasil
                   </h3>
                   <p className="text-slate-600">
-                    Tidak ada koi dengan status {selectedFilter} saat ini
+                    {selectedFilter === "All"
+                      ? "Belum ada galeri koi yang ditambahkan"
+                      : `Tidak ada koi dengan status ${selectedFilter} saat ini`}
                   </p>
                 </div>
               </LiquidCard>
