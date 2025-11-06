@@ -122,7 +122,15 @@
       "description": "Atur janji temu untuk melihat langsung koleksi koi dan fasilitas karantina kami."
     }
   },
-  "varieties": [],
+  "varieties": [
+    {
+      "id": "1762403198225",
+      "name": "Kohaku",
+      "description": "Kohaku 32CM",
+      "preset": "?variety=Kohaku&grade=Show",
+      "media": "/uploads/1762403198204-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg"
+    }
+  ],
   "gallery": [],
   "testimonials": [
     {
