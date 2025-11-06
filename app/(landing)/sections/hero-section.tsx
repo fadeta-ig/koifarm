@@ -12,7 +12,7 @@ async function getHeroData() {
     const content = await readFile(contentPath, "utf-8");
     const data = JSON.parse(content);
     return data.hero || {
-      mediaSrc: "https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=900&q=80",
+      mediaSrc: "/uploads/placeholder.jpg",
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
@@ -25,7 +25,7 @@ async function getHeroData() {
   } catch (error) {
     console.error("Error reading hero data:", error);
     return {
-      mediaSrc: "https://images.unsplash.com/photo-1506345282097-5b614c0371a4?auto=format&fit=crop&w=900&q=80",
+      mediaSrc: "/uploads/placeholder.jpg",
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
