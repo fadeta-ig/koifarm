@@ -46,16 +46,6 @@
   ],
   "gallery": [
     {
-      "id": "2",
-      "title": "Nisai Showa 58cm",
-      "tag": "Reserved",
-      "accent": "from-sky-500 via-indigo-500 to-purple-500",
-      "mediaType": "video",
-      "mediaSrc": "https://cdn.coverr.co/videos/coverr-koi-fish-swimming-5181/1080p.mp4",
-      "mediaPoster": "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=900&q=80",
-      "mediaAlt": "Video koi Showa berenang di kolam"
-    },
-    {
       "id": "3",
       "title": "Tancho 45cm",
       "tag": "Ready",
@@ -63,16 +53,6 @@
       "mediaType": "image",
       "mediaSrc": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
       "mediaAlt": "Foto koi Tancho dengan pola merah bulat di kepala"
-    },
-    {
-      "id": "1762398139934",
-      "title": "F",
-      "tag": "Ready",
-      "accent": "from-blue-400 to-blue-600",
-      "mediaType": "image",
-      "mediaSrc": "/uploads/1762398139906-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
-      "mediaPoster": "",
-      "mediaAlt": "s"
     }
   ],
   "testimonials": [
