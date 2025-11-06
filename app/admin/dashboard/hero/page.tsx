@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from "react";
 
+interface StatItem {
+  label: string;
+  value: string;
+}
+
 interface HeroData {
   mediaSrc: string;
   mediaAlt: string;
   badge: string;
   badgeSubtext: string;
+  title: string;
+  description: string;
+  stats: StatItem[];
 }
 
 export default function HeroPage() {
@@ -15,6 +23,13 @@ export default function HeroPage() {
     mediaAlt: "",
     badge: "",
     badgeSubtext: "",
+    title: "Koi Premium Terbaik",
+    description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
+    stats: [
+      { label: "Koi Siap Kirim", value: "120+" },
+      { label: "Bloodline Juara", value: "18" },
+      { label: "Tingkat Survival", value: "99%" },
+    ],
   });
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -28,8 +43,20 @@ export default function HeroPage() {
   const fetchHeroData = async () => {
     const res = await fetch("/api/admin/hero");
     const data = await res.json();
-    setHeroData(data);
-    setMediaPreview(data.mediaSrc);
+    setHeroData({
+      mediaSrc: data.mediaSrc || "",
+      mediaAlt: data.mediaAlt || "",
+      badge: data.badge || "",
+      badgeSubtext: data.badgeSubtext || "",
+      title: data.title || "Koi Premium Terbaik",
+      description: data.description || "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
+      stats: data.stats || [
+        { label: "Koi Siap Kirim", value: "120+" },
+        { label: "Bloodline Juara", value: "18" },
+        { label: "Tingkat Survival", value: "99%" },
+      ],
+    });
+    setMediaPreview(data.mediaSrc || "");
   };
 
   const uploadFile = async (file: File): Promise<string> => {
@@ -146,6 +173,37 @@ export default function HeroPage() {
               />
             </div>
 
+            {/* Divider */}
+            <div className="border-t border-white/10 pt-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Konten Teks Hero</h3>
+            </div>
+
+            {/* Main Title */}
+            <div>
+              <label className="block text-sm font-medium text-gray-200 mb-2">Judul Utama</label>
+              <input
+                type="text"
+                value={heroData.title}
+                onChange={(e) => setHeroData({ ...heroData, title: e.target.value })}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Contoh: Koi Premium Terbaik"
+                required
+              />
+            </div>
+
+            {/* Description */}
+            <div>
+              <label className="block text-sm font-medium text-gray-200 mb-2">Deskripsi</label>
+              <textarea
+                value={heroData.description}
+                onChange={(e) => setHeroData({ ...heroData, description: e.target.value })}
+                rows={3}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Contoh: Temukan koi unggulan dari bloodline juara..."
+                required
+              />
+            </div>
+
             {/* Badge Text */}
             <div>
               <label className="block text-sm font-medium text-gray-200 mb-2">Badge Teks (Judul Badge)</label>
@@ -171,6 +229,51 @@ export default function HeroPage() {
                 required
               />
             </div>
+
+            {/* Divider */}
+            <div className="border-t border-white/10 pt-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Statistik Hero (3 Item)</h3>
+            </div>
+
+            {/* Stats */}
+            {heroData.stats.map((stat, index) => (
+              <div key={index} className="grid grid-cols-2 gap-4 p-4 bg-white/5 rounded-lg border border-white/10">
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                    Label Stat {index + 1}
+                  </label>
+                  <input
+                    type="text"
+                    value={stat.label}
+                    onChange={(e) => {
+                      const newStats = [...heroData.stats];
+                      newStats[index].label = e.target.value;
+                      setHeroData({ ...heroData, stats: newStats });
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: Koi Siap Kirim"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                    Nilai Stat {index + 1}
+                  </label>
+                  <input
+                    type="text"
+                    value={stat.value}
+                    onChange={(e) => {
+                      const newStats = [...heroData.stats];
+                      newStats[index].value = e.target.value;
+                      setHeroData({ ...heroData, stats: newStats });
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: 120+"
+                    required
+                  />
+                </div>
+              </div>
+            ))}
 
             {/* Submit Button */}
             <div className="flex justify-end pt-4">
