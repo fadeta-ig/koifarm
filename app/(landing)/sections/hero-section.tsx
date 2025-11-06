@@ -16,6 +16,8 @@ async function getHeroData() {
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+      title: "Koi Premium Terbaik",
+      description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: [
         { label: "Koi Siap Kirim", value: "120+" },
         { label: "Bloodline Juara", value: "18" },
@@ -29,6 +31,8 @@ async function getHeroData() {
       mediaAlt: "Foto close-up koi berwarna oranye putih berenang",
       badge: "Tersertifikasi Bloodline Juara",
       badgeSubtext: "Kemitraan langsung dengan breeder Jepang",
+      title: "Koi Premium Terbaik",
+      description: "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.",
       stats: [
         { label: "Koi Siap Kirim", value: "120+" },
         { label: "Bloodline Juara", value: "18" },
@@ -75,17 +79,34 @@ export default async function HeroSection() {
               </div>
 
               <h1 className="text-5xl font-bold leading-tight text-slate-900 sm:text-6xl lg:text-7xl">
-                Koi Premium{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-orange-600 to-rose-600 bg-clip-text text-transparent">
-                    Terbaik
-                  </span>
-                  <div className="absolute inset-0 -z-10 translate-y-1 bg-gradient-to-r from-orange-400/30 to-rose-400/30 blur-xl" />
-                </span>
+                {heroData.title ? (
+                  heroData.title.split(' ').map((word: string, i: number, arr: string[]) =>
+                    i === arr.length - 1 ? (
+                      <span key={i} className="relative inline-block">
+                        <span className="relative z-10 bg-gradient-to-r from-orange-600 to-rose-600 bg-clip-text text-transparent">
+                          {word}
+                        </span>
+                        <div className="absolute inset-0 -z-10 translate-y-1 bg-gradient-to-r from-orange-400/30 to-rose-400/30 blur-xl" />
+                      </span>
+                    ) : (
+                      <span key={i}>{word} </span>
+                    )
+                  )
+                ) : (
+                  <>
+                    Koi Premium{" "}
+                    <span className="relative inline-block">
+                      <span className="relative z-10 bg-gradient-to-r from-orange-600 to-rose-600 bg-clip-text text-transparent">
+                        Terbaik
+                      </span>
+                      <div className="absolute inset-0 -z-10 translate-y-1 bg-gradient-to-r from-orange-400/30 to-rose-400/30 blur-xl" />
+                    </span>
+                  </>
+                )}
               </h1>
 
               <p className="text-xl text-slate-600 leading-relaxed">
-                Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin.
+                {heroData.description || "Temukan koi unggulan dari bloodline juara dengan pendampingan ahli end-to-end. Data kesehatan lengkap dan garansi kualitas terjamin."}
               </p>
             </div>
 
@@ -114,7 +135,7 @@ export default async function HeroSection() {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4">
-              {heroStats.map((stat, index) => (
+              {heroStats.map((stat: { label: string; value: string }, index: number) => (
                 <LiquidCard key={stat.label} variant="gradient" className="p-6 text-center">
                   <p className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</p>
                   <p className="text-xs font-medium text-slate-600 uppercase tracking-wide">
