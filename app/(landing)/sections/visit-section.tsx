@@ -5,43 +5,55 @@ import path from "path";
 import GlassPanel from "../components/glass-panel";
 import SectionHeading from "../components/section-heading";
 import WhatsAppButton from "../components/whatsapp-button";
-import { sectionCopies } from "../data/landing-content";
 
-async function getContactData() {
+async function getContentData() {
   try {
     const contentPath = path.join(process.cwd(), "app/admin/data/content.json");
     const content = await readFile(contentPath, "utf-8");
     const data = JSON.parse(content);
-    return data.contact || {
-      whatsappNumber: "6281934301918",
-      whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
-      address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
-      schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
-      latitude: "-8.059619",
-      longitude: "112.313774",
-      mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
+    return {
+      contact: data.contact || {
+        whatsappNumber: "6281934301918",
+        whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
+        address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
+        schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
+        latitude: "-8.059619",
+        longitude: "112.313774",
+        mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
+      },
+      sectionCopy: data.sectionCopies?.visit || {
+        eyebrow: "Kunjungan",
+        title: "Kunjungi Farm",
+        description: "Atur janji temu untuk melihat langsung koleksi koi dan fasilitas karantina kami.",
+      },
     };
   } catch (error) {
     console.error("Error reading contact data:", error);
     return {
-      whatsappNumber: "6281934301918",
-      whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
-      address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
-      schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
-      latitude: "-8.059619",
-      longitude: "112.313774",
-      mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
+      contact: {
+        whatsappNumber: "6281934301918",
+        whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
+        address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
+        schedule: "Kunjungan by appointment, Senin–Sabtu 09.00–16.00 WIB",
+        latitude: "-8.059619",
+        longitude: "112.313774",
+        mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
+      },
+      sectionCopy: {
+        eyebrow: "Kunjungan",
+        title: "Kunjungi Farm",
+        description: "Atur janji temu untuk melihat langsung koleksi koi dan fasilitas karantina kami.",
+      },
     };
   }
 }
 
 export default async function VisitSection() {
-  const copy = sectionCopies.visit;
-  const contactData = await getContactData();
+  const { contact: contactData, sectionCopy } = await getContentData();
 
   return (
     <section id="kunjungan" className="flex flex-col gap-10">
-      <SectionHeading {...copy} />
+      <SectionHeading {...sectionCopy} />
       <GlassPanel className="border-white/30 bg-white/20 p-8">
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,320px)] md:items-center">
           <div className="flex flex-col gap-4">
