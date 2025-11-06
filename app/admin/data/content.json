@@ -46,16 +46,6 @@
   ],
   "gallery": [
     {
-      "title": "Tosai Kohaku 32cm",
-      "tag": "Ready",
-      "accent": "from-orange-400 via-rose-400 to-sky-400",
-      "mediaType": "image",
-      "mediaSrc": "https://storage.bekoifarm.co.id/2025/02/WhatsApp-Image-2025-01-23-at-15.04.01-752x1024.jpeg",
-      "mediaPoster": "",
-      "mediaAlt": "Foto koi Kohaku berwarna merah dan putih",
-      "id": "1"
-    },
-    {
       "id": "2",
       "title": "Nisai Showa 58cm",
       "tag": "Reserved",
@@ -73,15 +63,6 @@
       "mediaType": "image",
       "mediaSrc": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
       "mediaAlt": "Foto koi Tancho dengan pola merah bulat di kepala"
-    },
-    {
-      "id": "4",
-      "title": "Shiro Utsuri 63cm",
-      "tag": "Sold",
-      "accent": "from-slate-500 via-slate-700 to-slate-900",
-      "mediaType": "image",
-      "mediaSrc": "https://images.unsplash.com/photo-1478694206463-91f014d63e19?auto=format&fit=crop&w=900&q=80",
-      "mediaAlt": "Foto koi Shiro Utsuri hitam putih di kolam"
     }
   ],
   "testimonials": [
