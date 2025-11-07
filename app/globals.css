@@ -10,6 +10,16 @@
   --border: rgba(255, 255, 255, 0.4);
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset scroll for sticky header */
+html {
+  scroll-padding-top: 100px;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
