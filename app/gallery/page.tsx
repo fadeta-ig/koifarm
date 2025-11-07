@@ -6,6 +6,8 @@ import Navigation from "../(landing)/components/navigation";
 import Footer from "../(landing)/components/footer";
 import Liquid3DBackground from "../(landing)/components/liquid-3d-background";
 import LiquidCard from "../(landing)/components/liquid-card";
+import LazyVideo from "../(landing)/components/lazy-video";
+import { ContentProvider } from "../(landing)/context/content-context";
 
 interface GalleryItem {
   id: string;
@@ -39,10 +41,11 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="relative min-h-screen text-slate-900">
-      <Liquid3DBackground />
-      <div className="relative flex min-h-screen flex-col">
-        <Navigation />
+    <ContentProvider>
+      <div className="relative min-h-screen text-slate-900">
+        <Liquid3DBackground />
+        <div className="relative flex min-h-screen flex-col">
+          <Navigation />
 
         <main className="flex-1 px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
@@ -90,11 +93,10 @@ export default function GalleryPage() {
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />
                       ) : (
-                        <video
+                        <LazyVideo
                           src={item.mediaSrc}
                           poster={item.mediaPoster}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          autoPlay
                           loop
                           muted
                           playsInline
@@ -154,5 +156,6 @@ export default function GalleryPage() {
         <Footer />
       </div>
     </div>
+    </ContentProvider>
   );
 }

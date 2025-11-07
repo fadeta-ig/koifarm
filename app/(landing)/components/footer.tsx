@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContent } from "../context/content-context";
 
 interface ContactData {
   address: string;
@@ -19,7 +19,8 @@ interface NavLink {
 }
 
 export default function Footer() {
-  const [contactData, setContactData] = useState<ContactData>({
+  const { content } = useContent();
+  const contactData = content?.contact || {
     address: "Butun, Kec. Gandusari, Kabupaten Blitar, Jawa Timur",
     schedule: "Senin - Sabtu, 09:00 - 16:00",
     whatsappNumber: "6281934301918",
@@ -27,39 +28,8 @@ export default function Footer() {
     latitude: "-8.059619",
     longitude: "112.313774",
     mapUrl: "https://www.google.com/maps?q=-8.059619,112.313774",
-  });
-
-  const [navigationLinks, setNavigationLinks] = useState<NavLink[]>([
-    { label: "Beranda", href: "/" },
-    { label: "Produk", href: "/products" },
-    { label: "Tentang", href: "/about" },
-    { label: "Galeri", href: "/gallery" },
-    { label: "Testimoni", href: "/testimonials" },
-    { label: "Kontak", href: "/contact" },
-  ]);
-
-  useEffect(() => {
-    // Fetch contact data and navigation links from API
-    fetch("/api/content")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.contact) {
-          setContactData({
-            address: data.contact.address,
-            schedule: data.contact.schedule,
-            whatsappNumber: data.contact.whatsappNumber,
-            whatsappTemplate: data.contact.whatsappTemplate,
-            latitude: data.contact.latitude,
-            longitude: data.contact.longitude,
-            mapUrl: data.contact.mapUrl,
-          });
-        }
-        if (data.navigationLinks) {
-          setNavigationLinks(data.navigationLinks);
-        }
-      })
-      .catch((error) => console.error("Error fetching content data:", error));
-  }, []);
+  };
+  const navigationLinks = content?.navigationLinks || [];
   const handleWhatsAppClick = () => {
     const waUrl = `https://wa.me/${contactData.whatsappNumber}?text=${encodeURIComponent(contactData.whatsappTemplate)}`;
     window.open(waUrl, "_blank");

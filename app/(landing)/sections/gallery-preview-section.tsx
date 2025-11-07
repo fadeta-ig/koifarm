@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LiquidCard from "../components/liquid-card";
+import LazyVideo from "../components/lazy-video";
 
 interface GalleryItem {
   id: string;
@@ -89,11 +90,10 @@ export default function GalleryPreviewSection() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     />
                   ) : (
-                    <video
+                    <LazyVideo
                       src={item.mediaSrc}
                       poster={item.mediaPoster}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      autoPlay
                       loop
                       muted
                       playsInline

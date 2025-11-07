@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
 import { buildWhatsAppLink } from "../lib/whatsapp";
+import { useContent } from "../context/content-context";
 
 type WhatsAppVariant = "primary" | "secondary";
 
@@ -29,27 +28,11 @@ export default function WhatsAppButton({
   whatsappNumber,
   whatsappTemplate,
 }: WhatsAppButtonProps) {
-  const [defaultContact, setDefaultContact] = useState({
+  const { content } = useContent();
+  const defaultContact = content?.contact || {
     whatsappNumber: "6281934301918",
     whatsappTemplate: "Halo Asyifa Koi Farm, saya tertarik dengan koleksi koi premium. Mohon bantu rekomendasinya.",
-  });
-
-  useEffect(() => {
-    // Fetch default contact data from API if not provided via props
-    if (!whatsappNumber || !whatsappTemplate) {
-      fetch("/api/content")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.contact) {
-            setDefaultContact({
-              whatsappNumber: data.contact.whatsappNumber,
-              whatsappTemplate: data.contact.whatsappTemplate,
-            });
-          }
-        })
-        .catch((error) => console.error("Error fetching contact data:", error));
-    }
-  }, [whatsappNumber, whatsappTemplate]);
+  };
 
   const baseStyle =
     "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[transform,box-shadow] motion-safe:hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
