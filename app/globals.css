@@ -159,3 +159,38 @@ body::after {
   transform-style: preserve-3d;
   perspective: 1000px;
 }
+
+/* Accessibility: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable smooth scrolling */
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Disable specific animations */
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-shimmer,
+  .animate-gradient,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+
+  /* Keep transforms but remove transitions */
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .hover\:-translate-y-0\.5:hover {
+    transition: none !important;
+  }
+}

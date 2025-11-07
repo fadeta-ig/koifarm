@@ -1,6 +1,8 @@
 "use client";
 
-export default function Liquid3DBackground() {
+import { memo } from "react";
+
+function Liquid3DBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Animated gradient orbs */}
@@ -16,3 +18,6 @@ export default function Liquid3DBackground() {
     </div>
   );
 }
+
+// Memoize since this is a static background that never changes
+export default memo(Liquid3DBackground);

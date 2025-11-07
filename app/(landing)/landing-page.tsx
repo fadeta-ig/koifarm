@@ -6,22 +6,25 @@ import AboutPreviewSection from "./sections/about-preview-section";
 import GalleryPreviewSection from "./sections/gallery-preview-section";
 import TestimonialsPreviewSection from "./sections/testimonials-preview-section";
 import Liquid3DBackground from "./components/liquid-3d-background";
+import { ClientWrapper } from "./components/client-wrapper";
 
-export default function LandingPage() {
+export default async function LandingPage() {
   return (
-    <div className="relative min-h-screen text-slate-900 scroll-smooth">
-      <Liquid3DBackground />
-      <div className="relative flex min-h-screen flex-col">
-        <Navigation />
-        <main className="flex-1">
-          <HeroSection />
-          <ProductsPreviewSection />
-          <AboutPreviewSection />
-          <GalleryPreviewSection />
-          <TestimonialsPreviewSection />
-        </main>
-        <Footer />
+    <ClientWrapper>
+      <div className="relative min-h-screen text-slate-900 scroll-smooth">
+        <Liquid3DBackground />
+        <div className="relative flex min-h-screen flex-col">
+          <Navigation />
+          <main className="flex-1">
+            <HeroSection />
+            <ProductsPreviewSection />
+            <AboutPreviewSection />
+            <GalleryPreviewSection />
+            <TestimonialsPreviewSection />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ClientWrapper>
   );
 }

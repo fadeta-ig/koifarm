@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, CSSProperties } from "react";
+import { ReactNode, CSSProperties, memo } from "react";
 
 interface LiquidCardProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface LiquidCardProps {
   style?: CSSProperties;
 }
 
-export default function LiquidCard({
+function LiquidCard({
   children,
   className = "",
   variant = "default",
@@ -37,3 +37,6 @@ export default function LiquidCard({
     </div>
   );
 }
+
+// Memoize to prevent unnecessary re-renders
+export default memo(LiquidCard);
