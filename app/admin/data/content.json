@@ -142,9 +142,13 @@
     {
       "id": "1762403198225",
       "name": "Kohaku",
-      "description": "Kohaku 32CM",
+      "description": "Kohaku 32CM dengan pola hi (merah) yang sempurna dan shiroji (putih) yang bersih. Koi ini memiliki bloodline juara dari breeder Jepang ternama dan telah melewati karantina 21 hari.",
       "preset": "?variety=Kohaku&grade=Show",
-      "media": "/uploads/1762403198204-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg"
+      "media": "/uploads/1762403198204-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+      "price": "5000000",
+      "status": "ready",
+      "size": "32cm",
+      "grade": "Show Quality"
     }
   ],
   "gallery": [
