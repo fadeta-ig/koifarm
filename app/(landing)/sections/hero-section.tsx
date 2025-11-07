@@ -138,8 +138,8 @@ export default async function HeroSection() {
                 whatsappNumber={contactData.whatsappNumber}
                 whatsappTemplate={contactData.whatsappTemplate}
               />
-              <Link
-                href="/products"
+              <a
+                href="#produk"
                 className="group inline-flex items-center gap-2 rounded-2xl border border-white/40 bg-white/60 px-8 py-4 text-base font-semibold text-slate-700 shadow-[0_8px_24px_0_rgba(15,23,42,0.1)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(234,88,12,0.15)] hover:border-orange-200/60"
               >
                 Lihat Koleksi
@@ -151,7 +151,47 @@ export default async function HeroSection() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </a>
+            </div>
+
+            {/* Quick Links to Sections */}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#produk"
+                className="group flex items-center gap-2 rounded-xl border border-orange-200/50 bg-gradient-to-r from-orange-50/60 to-rose-50/60 px-4 py-2 text-sm font-medium text-orange-700 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-orange-100/80 hover:to-rose-100/80"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Produk
+              </a>
+              <a
+                href="#tentang-kami"
+                className="group flex items-center gap-2 rounded-xl border border-cyan-200/50 bg-gradient-to-r from-cyan-50/60 to-blue-50/60 px-4 py-2 text-sm font-medium text-cyan-700 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-cyan-100/80 hover:to-blue-100/80"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Tentang Kami
+              </a>
+              <a
+                href="#galeri"
+                className="group flex items-center gap-2 rounded-xl border border-purple-200/50 bg-gradient-to-r from-purple-50/60 to-pink-50/60 px-4 py-2 text-sm font-medium text-purple-700 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-purple-100/80 hover:to-pink-100/80"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Galeri
+              </a>
+              <a
+                href="#testimoni"
+                className="group flex items-center gap-2 rounded-xl border border-rose-200/50 bg-gradient-to-r from-rose-50/60 to-pink-50/60 px-4 py-2 text-sm font-medium text-rose-700 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-rose-100/80 hover:to-pink-100/80"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                Testimoni
+              </a>
             </div>
 
             {/* Stats */}
