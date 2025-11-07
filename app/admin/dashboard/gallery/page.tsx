@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 interface GalleryItem {
   id: string;
   title: string;
-  tag: string;
-  accent: string;
   mediaType: "image" | "video";
   mediaSrc: string;
   mediaPoster?: string;
@@ -19,8 +17,6 @@ export default function GalleryPage() {
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
   const [formData, setFormData] = useState({
     title: "",
-    tag: "Ready",
-    accent: "from-blue-400 to-blue-600",
     mediaType: "image" as "image" | "video",
     mediaSrc: "",
     mediaPoster: "",
@@ -31,16 +27,6 @@ export default function GalleryPage() {
   const [uploading, setUploading] = useState(false);
   const [mediaPreview, setMediaPreview] = useState<string>("");
   const [posterPreview, setPosterPreview] = useState<string>("");
-
-  const tagOptions = ["Ready", "Reserved", "Sold"];
-  const accentOptions = [
-    { name: "Blue", value: "from-blue-400 to-blue-600" },
-    { name: "Purple", value: "from-purple-400 to-purple-600" },
-    { name: "Orange", value: "from-orange-400 via-rose-400 to-sky-400" },
-    { name: "Sky", value: "from-sky-500 via-indigo-500 to-purple-500" },
-    { name: "Rose", value: "from-rose-400 via-orange-300 to-amber-400" },
-    { name: "Slate", value: "from-slate-500 via-slate-700 to-slate-900" },
-  ];
 
   useEffect(() => {
     fetchGallery();
@@ -122,8 +108,6 @@ export default function GalleryPage() {
     setEditingItem(item);
     setFormData({
       title: item.title,
-      tag: item.tag,
-      accent: item.accent,
       mediaType: item.mediaType,
       mediaSrc: item.mediaSrc,
       mediaPoster: item.mediaPoster || "",
@@ -162,8 +146,6 @@ export default function GalleryPage() {
   const resetForm = () => {
     setFormData({
       title: "",
-      tag: "Ready",
-      accent: "from-blue-400 to-blue-600",
       mediaType: "image",
       mediaSrc: "",
       mediaPoster: "",
@@ -226,9 +208,6 @@ export default function GalleryPage() {
                   onMouseLeave={(e) => e.currentTarget.pause()}
                 />
               )}
-              <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${item.accent}`}>
-                {item.tag}
-              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-3 left-3 right-3">
                 <h3 className="text-white font-semibold">{item.title}</h3>
@@ -294,47 +273,15 @@ export default function GalleryPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-2">Status</label>
-                  <select
-                    value={formData.tag}
-                    onChange={(e) => setFormData({ ...formData, tag: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  >
-                    {tagOptions.map((tag) => (
-                      <option key={tag} value={tag} className="bg-slate-700">
-                        {tag}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-2">Tipe Media</label>
-                  <select
-                    value={formData.mediaType}
-                    onChange={(e) => setFormData({ ...formData, mediaType: e.target.value as "image" | "video" })}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  >
-                    <option value="image" className="bg-slate-700">Image</option>
-                    <option value="video" className="bg-slate-700">Video</option>
-                  </select>
-                </div>
-              </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Warna Accent</label>
+                <label className="block text-sm font-medium text-gray-200 mb-2">Tipe Media</label>
                 <select
-                  value={formData.accent}
-                  onChange={(e) => setFormData({ ...formData, accent: e.target.value })}
+                  value={formData.mediaType}
+                  onChange={(e) => setFormData({ ...formData, mediaType: e.target.value as "image" | "video" })}
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
-                  {accentOptions.map((accent) => (
-                    <option key={accent.value} value={accent.value} className="bg-slate-700">
-                      {accent.name}
-                    </option>
-                  ))}
+                  <option value="image" className="bg-slate-700">Image</option>
+                  <option value="video" className="bg-slate-700">Video</option>
                 </select>
               </div>
 
