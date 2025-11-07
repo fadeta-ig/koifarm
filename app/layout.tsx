@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://asyifakoifarm.example"),
@@ -53,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className="bg-white antialiased text-slate-900 font-sans">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
