@@ -10,8 +10,6 @@ import LiquidCard from "../(landing)/components/liquid-card";
 interface GalleryItem {
   id: string;
   title: string;
-  tag: string;
-  accent: string;
   mediaType: "image" | "video";
   mediaSrc: string;
   mediaPoster?: string;
@@ -19,10 +17,8 @@ interface GalleryItem {
 }
 
 export default function GalleryPage() {
-  const [selectedFilter, setSelectedFilter] = useState<string>("All");
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const filters = ["All", "Ready", "Reserved", "Sold"];
 
   useEffect(() => {
     fetchGalleryData();
@@ -41,11 +37,6 @@ export default function GalleryPage() {
       setLoading(false);
     }
   };
-
-  const filteredItems =
-    selectedFilter === "All"
-      ? galleryItems
-      : galleryItems.filter((item) => item.tag === selectedFilter);
 
   return (
     <div className="relative min-h-screen text-slate-900">
@@ -73,25 +64,6 @@ export default function GalleryPage() {
               </p>
             </div>
 
-            {/* Filter Tabs */}
-            <div className="mb-12 flex justify-center">
-              <div className="inline-flex gap-2 rounded-2xl border border-white/40 bg-white/60 p-2 backdrop-blur-xl">
-                {filters.map((filter) => (
-                  <button
-                    key={filter}
-                    onClick={() => setSelectedFilter(filter)}
-                    className={`rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 ${
-                      selectedFilter === filter
-                        ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
-                        : "text-slate-700 hover:bg-white/50"
-                    }`}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Gallery Grid */}
             {loading ? (
               <div className="flex items-center justify-center py-16">
@@ -102,7 +74,7 @@ export default function GalleryPage() {
               </div>
             ) : (
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredItems.map((item, index) => (
+                {galleryItems.map((item, index) => (
                   <LiquidCard
                     key={item.id}
                     variant="hover"
@@ -132,21 +104,6 @@ export default function GalleryPage() {
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                      {/* Status Badge */}
-                      <div className="absolute top-4 right-4">
-                        <div
-                          className={`rounded-full border border-white/40 px-4 py-2 backdrop-blur-xl ${
-                            item.tag === "Ready"
-                              ? "bg-green-500/80 text-white"
-                              : item.tag === "Reserved"
-                                ? "bg-orange-500/80 text-white"
-                                : "bg-slate-500/80 text-white"
-                          }`}
-                        >
-                          <span className="text-xs font-bold">{item.tag}</span>
-                        </div>
-                      </div>
-
                       {/* Title Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 translate-y-full p-6 transition-transform duration-300 group-hover:translate-y-0">
                         <h3 className="text-xl font-bold text-white">
@@ -165,7 +122,7 @@ export default function GalleryPage() {
             )}
 
             {/* Empty State */}
-            {!loading && filteredItems.length === 0 && (
+            {!loading && galleryItems.length === 0 && (
               <LiquidCard variant="gradient" className="p-16 text-center">
                 <div className="mx-auto max-w-md">
                   <div className="mb-4 text-6xl">🐟</div>
@@ -173,9 +130,7 @@ export default function GalleryPage() {
                     Tidak Ada Hasil
                   </h3>
                   <p className="text-slate-600">
-                    {selectedFilter === "All"
-                      ? "Belum ada galeri koi yang ditambahkan"
-                      : `Tidak ada koi dengan status ${selectedFilter} saat ini`}
+                    Belum ada galeri koi yang ditambahkan
                   </p>
                 </div>
               </LiquidCard>
