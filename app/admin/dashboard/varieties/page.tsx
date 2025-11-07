@@ -8,6 +8,10 @@ interface Variety {
   description: string;
   preset: string;
   media: string;
+  price?: string;
+  status?: "ready" | "sold";
+  size?: string;
+  grade?: string;
 }
 
 export default function VarietiesPage() {
@@ -19,6 +23,10 @@ export default function VarietiesPage() {
     description: "",
     preset: "",
     media: "",
+    price: "",
+    status: "ready" as "ready" | "sold",
+    size: "",
+    grade: "",
   });
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -84,7 +92,7 @@ export default function VarietiesPage() {
 
       setIsModalOpen(false);
       setEditingVariety(null);
-      setFormData({ name: "", description: "", preset: "", media: "" });
+      setFormData({ name: "", description: "", preset: "", media: "", price: "", status: "ready", size: "", grade: "" });
       setMediaFile(null);
       setMediaPreview("");
       fetchVarieties();
@@ -103,6 +111,10 @@ export default function VarietiesPage() {
       description: variety.description,
       preset: variety.preset,
       media: variety.media,
+      price: variety.price || "",
+      status: variety.status || "ready",
+      size: variety.size || "",
+      grade: variety.grade || "",
     });
     setMediaPreview(variety.media);
     setIsModalOpen(true);
@@ -126,7 +138,7 @@ export default function VarietiesPage() {
 
   const openAddModal = () => {
     setEditingVariety(null);
-    setFormData({ name: "", description: "", preset: "", media: "" });
+    setFormData({ name: "", description: "", preset: "", media: "", price: "", status: "ready", size: "", grade: "" });
     setMediaFile(null);
     setMediaPreview("");
     setIsModalOpen(true);
@@ -169,10 +181,26 @@ export default function VarietiesPage() {
             </div>
 
             <div className="p-4">
-              <h3 className="text-xl font-semibold text-white mb-2">{variety.name}</h3>
-              <p className="text-gray-400 text-sm mb-4">{variety.description}</p>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-xl font-semibold text-white">{variety.name}</h3>
+                <span
+                  className={`px-2 py-1 text-xs font-bold rounded-full ${
+                    variety.status === "sold"
+                      ? "bg-red-500/20 text-red-400"
+                      : "bg-green-500/20 text-green-400"
+                  }`}
+                >
+                  {variety.status === "sold" ? "SOLD" : "READY"}
+                </span>
+              </div>
+              <p className="text-gray-400 text-sm mb-2">{variety.description}</p>
+              {variety.price && (
+                <p className="text-orange-400 font-bold text-lg mb-4">
+                  Rp {parseInt(variety.price).toLocaleString("id-ID")}
+                </p>
+              )}
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mt-4">
                 <button
                   onClick={() => handleEdit(variety)}
                   className="flex-1 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
@@ -252,6 +280,55 @@ export default function VarietiesPage() {
                   placeholder="Contoh: ?variety=Kohaku&grade=Show"
                   required
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">Harga (Rp)</label>
+                  <input
+                    type="number"
+                    value={formData.price}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: 5000000"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">Status</label>
+                  <select
+                    value={formData.status}
+                    onChange={(e) => setFormData({ ...formData, status: e.target.value as "ready" | "sold" })}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="ready" className="bg-slate-800">Ready</option>
+                    <option value="sold" className="bg-slate-800">Sold</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">Grade</label>
+                  <input
+                    type="text"
+                    value={formData.grade}
+                    onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: Show Quality"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-200 mb-2">Ukuran</label>
+                  <input
+                    type="text"
+                    value={formData.size}
+                    onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Contoh: 45-60cm"
+                  />
+                </div>
               </div>
 
               <div>
