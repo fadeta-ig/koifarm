@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Navigation from "../(landing)/components/navigation";
 import Footer from "../(landing)/components/footer";
@@ -20,7 +21,8 @@ interface Variety {
   grade?: string;
 }
 
-export default function ProductsPage() {
+function ProductsContent() {
+  const searchParams = useSearchParams();
   const [varieties, setVarieties] = useState<Variety[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Variety | null>(null);
@@ -28,6 +30,17 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchVarieties();
   }, []);
+
+  // Auto-open product modal if ID is in URL
+  useEffect(() => {
+    const productId = searchParams.get('id');
+    if (productId && varieties.length > 0) {
+      const product = varieties.find(v => v.id === productId);
+      if (product) {
+        setSelectedProduct(product);
+      }
+    }
+  }, [searchParams, varieties]);
 
   const fetchVarieties = async () => {
     try {
@@ -96,7 +109,18 @@ export default function ProductsPage() {
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                 {varieties.map((variety, index) => {
                   const isSold = variety.status === "sold";
-                  const whatsappMessage = `Halo Asyifa Koi Farm, saya tertarik dengan ${variety.name}. Bisakah saya mendapatkan informasi lebih detail?`;
+
+                  // Build product URL with ID
+                  const productUrl = typeof window !== 'undefined'
+                    ? `${window.location.origin}/products?id=${variety.id}`
+                    : '';
+
+                  const whatsappMessage = `Halo Asyifa Koi Farm, saya tertarik dengan ${variety.name}.
+
+ID Produk: ${variety.id}
+Link Produk: ${productUrl}
+
+Bisakah saya mendapatkan informasi lebih detail?`;
 
                   return (
                     <LiquidCard
@@ -236,5 +260,13 @@ export default function ProductsPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="text-slate-600">Loading...</div></div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }

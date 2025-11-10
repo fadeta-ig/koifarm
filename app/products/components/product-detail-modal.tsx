@@ -43,7 +43,17 @@ export default function ProductDetailModal({
     return `Rp ${parseInt(price).toLocaleString("id-ID")}`;
   };
 
-  const whatsappMessage = `Halo Asyifa Koi Farm, saya tertarik dengan ${product.name}. Bisakah saya mendapatkan informasi lebih detail?`;
+  // Build product URL with ID
+  const productUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/products?id=${product.id}`
+    : '';
+
+  const whatsappMessage = `Halo Asyifa Koi Farm, saya tertarik dengan ${product.name}.
+
+ID Produk: ${product.id}
+Link Produk: ${productUrl}
+
+Bisakah saya mendapatkan informasi lebih detail?`;
 
   return (
     <div
