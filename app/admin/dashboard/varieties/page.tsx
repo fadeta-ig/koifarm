@@ -6,7 +6,6 @@ interface Variety {
   id: string;
   name: string;
   description: string;
-  preset: string;
   media: string;
   price?: string;
   status?: "ready" | "sold";
@@ -21,7 +20,6 @@ export default function VarietiesPage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    preset: "",
     media: "",
     price: "",
     status: "ready" as "ready" | "sold",
@@ -92,7 +90,7 @@ export default function VarietiesPage() {
 
       setIsModalOpen(false);
       setEditingVariety(null);
-      setFormData({ name: "", description: "", preset: "", media: "", price: "", status: "ready", size: "", grade: "" });
+      setFormData({ name: "", description: "", media: "", price: "", status: "ready", size: "", grade: "" });
       setMediaFile(null);
       setMediaPreview("");
       fetchVarieties();
@@ -109,7 +107,6 @@ export default function VarietiesPage() {
     setFormData({
       name: variety.name,
       description: variety.description,
-      preset: variety.preset,
       media: variety.media,
       price: variety.price || "",
       status: variety.status || "ready",
@@ -138,7 +135,7 @@ export default function VarietiesPage() {
 
   const openAddModal = () => {
     setEditingVariety(null);
-    setFormData({ name: "", description: "", preset: "", media: "", price: "", status: "ready", size: "", grade: "" });
+    setFormData({ name: "", description: "", media: "", price: "", status: "ready", size: "", grade: "" });
     setMediaFile(null);
     setMediaPreview("");
     setIsModalOpen(true);
@@ -266,18 +263,6 @@ export default function VarietiesPage() {
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                   rows={3}
                   placeholder="Deskripsi singkat varietas"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Preset Filter</label>
-                <input
-                  type="text"
-                  value={formData.preset}
-                  onChange={(e) => setFormData({ ...formData, preset: e.target.value })}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Contoh: ?variety=Kohaku&grade=Show"
                   required
                 />
               </div>
