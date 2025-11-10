@@ -13,7 +13,6 @@ interface Variety {
   id: string;
   name: string;
   description: string;
-  preset: string;
   media: string;
   price?: string;
   status?: "ready" | "sold";
@@ -106,14 +105,14 @@ export default function ProductsPage() {
                       className="group overflow-hidden p-0"
                     >
                       <div
-                        className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+                        className="relative aspect-[3/2] overflow-hidden cursor-pointer"
                         onClick={() => setSelectedProduct(variety)}
                       >
                         <Image
                           src={variety.media}
                           alt={variety.name}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="object-contain bg-gradient-to-br from-slate-50 to-slate-100 transition-transform duration-500 group-hover:scale-110"
                           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />

@@ -80,20 +80,20 @@ export default function GalleryPreviewSection() {
                 variant="hover"
                 className="group overflow-hidden p-0 transition-all duration-500 hover:scale-105"
               >
-                <div className="relative aspect-square overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   {item.mediaType === "image" ? (
                     <Image
                       src={item.mediaSrc}
                       alt={item.mediaAlt}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
+                      className="object-contain bg-gradient-to-br from-slate-50 to-slate-100 transition-transform duration-700 group-hover:scale-110"
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     />
                   ) : (
                     <LazyVideo
                       src={item.mediaSrc}
                       poster={item.mediaPoster}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="h-full w-full object-contain bg-gradient-to-br from-slate-50 to-slate-100 transition-transform duration-700 group-hover:scale-110"
                       loop
                       muted
                       playsInline
