@@ -140,25 +140,61 @@
   },
   "varieties": [
     {
-      "id": "1762403198225",
       "name": "Kohaku",
       "description": "Kohaku 32CM dengan pola hi (merah) yang sempurna dan shiroji (putih) yang bersih. Koi ini memiliki bloodline juara dari breeder Jepang ternama dan telah melewati karantina 21 hari.",
       "preset": "?variety=Kohaku&grade=Show",
-      "media": "/uploads/1762403198204-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+      "media": "/uploads/1762744936918-ffa4ae9528299be6b1ee060c5963f996.jpg",
       "price": "5000000",
       "status": "ready",
       "size": "32cm",
+      "grade": "Show Quality",
+      "id": "1762403198225"
+    },
+    {
+      "id": "1762745043893",
+      "name": "Showa",
+      "description": "Showa 30CM Female",
+      "preset": "?variety=Showa&grade=Show",
+      "media": "/uploads/1762745043867-59551a11068c6f66655ea81275d212bf.jpg",
+      "price": "1200000",
+      "status": "sold",
+      "size": "30 CM",
+      "grade": "Show Quality"
+    },
+    {
+      "id": "1762745142281",
+      "name": "Tancho Sanke",
+      "description": "Tancho Sanke 35 CM Male",
+      "preset": "?variety=Tancho Sanke&grade=Show",
+      "media": "/uploads/1762745142247-3248771608e3363d45457dca82c40691.jpg",
+      "price": "2000000",
+      "status": "ready",
+      "size": "35 CM",
       "grade": "Show Quality"
     }
   ],
   "gallery": [
     {
-      "id": "1762403601640",
-      "title": "Tosai Kohaku",
-      "tag": "Ready",
-      "accent": "from-blue-400 to-blue-600",
+      "title": "Kohaku",
       "mediaType": "image",
-      "mediaSrc": "/uploads/1762403601618-WhatsApp-Image-2025-10-31-at-16.55.48_91963b0d.jpg",
+      "mediaSrc": "/uploads/1762745201156-ffa4ae9528299be6b1ee060c5963f996.jpg",
+      "mediaPoster": "",
+      "mediaAlt": "tes",
+      "id": "1762403601640"
+    },
+    {
+      "id": "1762745215349",
+      "title": "Showa",
+      "mediaType": "image",
+      "mediaSrc": "/uploads/1762745215331-59551a11068c6f66655ea81275d212bf.jpg",
+      "mediaPoster": "",
+      "mediaAlt": "tes"
+    },
+    {
+      "id": "1762745237212",
+      "title": "Tancho Sanke",
+      "mediaType": "image",
+      "mediaSrc": "/uploads/1762745237192-3248771608e3363d45457dca82c40691.jpg",
       "mediaPoster": "",
       "mediaAlt": "tes"
     }
