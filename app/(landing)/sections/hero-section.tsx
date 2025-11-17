@@ -86,11 +86,11 @@ export default async function HeroSection() {
   ];
 
   return (
-    <section className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+    <section className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 lg:items-center">
           {/* Left Content */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-6">
               <div className="inline-flex w-fit items-center gap-2 rounded-full border border-orange-200/50 bg-gradient-to-r from-orange-50/80 to-rose-50/80 px-4 py-2 backdrop-blur-sm">
                 <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
