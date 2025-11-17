@@ -22,10 +22,10 @@ export default function AboutPreviewSection() {
   ];
 
   return (
-    <section id="tentang-kami" className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32 bg-gradient-to-b from-slate-50/50 to-transparent">
+    <section id="tentang-kami" className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20 bg-gradient-to-b from-slate-50/50 to-transparent">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-200/50 bg-gradient-to-r from-cyan-50/80 to-blue-50/80 px-4 py-2 backdrop-blur-sm">
             <span className="text-sm font-semibold text-cyan-600">
               Tentang Kami
@@ -78,7 +78,7 @@ export default function AboutPreviewSection() {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
           <LiquidCard variant="gradient" className="p-8 text-center">
             <div className="mb-2 text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               15+
@@ -106,7 +106,7 @@ export default function AboutPreviewSection() {
         </div>
 
         {/* CTA Button */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/about"
             className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-600 px-8 py-4 text-base font-semibold text-white shadow-[0_8px_24px_0_rgba(6,182,212,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(6,182,212,0.4)]"

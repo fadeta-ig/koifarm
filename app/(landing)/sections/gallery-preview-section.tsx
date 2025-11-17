@@ -41,10 +41,10 @@ export default function GalleryPreviewSection() {
   };
 
   return (
-    <section id="galeri" className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+    <section id="galeri" className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200/50 bg-gradient-to-r from-purple-50/80 to-pink-50/80 px-4 py-2 backdrop-blur-sm">
             <span className="text-sm font-semibold text-purple-600">
               Galeri Kolam
@@ -152,7 +152,7 @@ export default function GalleryPreviewSection() {
 
         {/* CTA Button */}
         {!loading && galleryItems.length > 0 && (
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/gallery"
               className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-base font-semibold text-white shadow-[0_8px_24px_0_rgba(168,85,247,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(168,85,247,0.4)]"

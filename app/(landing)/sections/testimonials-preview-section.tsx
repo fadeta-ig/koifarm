@@ -5,10 +5,10 @@ import { testimonials } from "../data/landing-content";
 
 export default function TestimonialsPreviewSection() {
   return (
-    <section id="testimoni" className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32 bg-gradient-to-b from-slate-50/50 to-transparent">
+    <section id="testimoni" className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20 bg-gradient-to-b from-slate-50/50 to-transparent">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-200/50 bg-gradient-to-r from-rose-50/80 to-pink-50/80 px-4 py-2 backdrop-blur-sm">
             <span className="text-sm font-semibold text-rose-600">
               Testimoni
@@ -26,7 +26,7 @@ export default function TestimonialsPreviewSection() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="mb-16 grid gap-8 lg:grid-cols-2">
+        <div className="mb-12 grid gap-8 lg:grid-cols-2">
           {testimonials.map((testimonial) => (
             <LiquidCard
               key={testimonial.name}
@@ -68,7 +68,7 @@ export default function TestimonialsPreviewSection() {
         </div>
 
         {/* Stats Section */}
-        <div className="mb-12 grid gap-6 sm:grid-cols-3">
+        <div className="mb-10 grid gap-6 sm:grid-cols-3">
           <LiquidCard variant="gradient" className="p-8 text-center">
             <div className="mb-2 text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
               500+

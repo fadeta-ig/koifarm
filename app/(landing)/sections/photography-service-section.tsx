@@ -8,7 +8,7 @@ export default function PhotographyServiceSection() {
   const whatsappTemplate = "Halo Asyifa Koi Farm, saya tertarik dengan jasa fotografi koi profesional. Mohon informasi lebih lanjut mengenai paket dan harga.";
 
   return (
-    <section id="photography-service" className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32 overflow-hidden">
+    <section id="photography-service" className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/50 to-transparent" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl" />
@@ -16,7 +16,7 @@ export default function PhotographyServiceSection() {
 
       <div className="relative mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200/50 bg-gradient-to-r from-purple-50/80 to-pink-50/80 px-4 py-2 backdrop-blur-sm">
             <svg className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -39,7 +39,7 @@ export default function PhotographyServiceSection() {
         </div>
 
         {/* Photography Services Grid */}
-        <div className="mb-20 grid gap-8 md:grid-cols-3">
+        <div className="mb-12 grid gap-8 md:grid-cols-3">
           {photographyServices.map((service, index) => {
             const gradients = [
               "from-purple-500 to-pink-500",
@@ -95,8 +95,8 @@ export default function PhotographyServiceSection() {
         </div>
 
         {/* Benefits Section */}
-        <div className="mb-16">
-          <h3 className="mb-10 text-center text-3xl font-bold text-slate-900">
+        <div className="mb-12">
+          <h3 className="mb-8 text-center text-3xl font-bold text-slate-900">
             Mengapa Memilih{" "}
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Layanan Kami?
@@ -180,7 +180,7 @@ export default function PhotographyServiceSection() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

@@ -34,10 +34,10 @@ export default function ProductsPreviewSection() {
   };
 
   return (
-    <section id="produk" className="relative px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+    <section id="produk" className="relative px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-200/50 bg-gradient-to-r from-orange-50/80 to-rose-50/80 px-4 py-2 backdrop-blur-sm">
             <span className="text-sm font-semibold text-orange-600">
               Varietas Premium
@@ -114,7 +114,7 @@ export default function ProductsPreviewSection() {
         )}
 
         {/* CTA Button */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/products"
             className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-orange-600 to-rose-600 px-8 py-4 text-base font-semibold text-white shadow-[0_8px_24px_0_rgba(234,88,12,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_0_rgba(234,88,12,0.4)]"
