@@ -4,6 +4,7 @@ import Navigation from "../(landing)/components/navigation";
 import Footer from "../(landing)/components/footer";
 import Liquid3DBackground from "../(landing)/components/liquid-3d-background";
 import LiquidCard from "../(landing)/components/liquid-card";
+import WhatsAppFloatingButton from "../(landing)/components/whatsapp-floating-button";
 import { farmAdvantages, purchaseSteps } from "../(landing)/data/landing-content";
 
 export default function AboutPage() {
@@ -115,6 +116,8 @@ export default function AboutPage() {
 
         <Footer />
       </div>
+
+      <WhatsAppFloatingButton />
     </div>
   );
 }
