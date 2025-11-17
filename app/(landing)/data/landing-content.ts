@@ -49,6 +49,70 @@ export const farmAdvantages = [
     description:
       "Tim ahli siap memandu adaptasi kolam dan nutrisi pakan untuk menjaga performa warna.",
   },
+  {
+    title: "Jasa Foto Ikan Premium",
+    description:
+      "Layanan fotografi profesional untuk dokumentasi koleksi koi Anda dengan hasil berkualitas tinggi.",
+  },
+] as const;
+
+export const photographyServices = [
+  {
+    title: "Professional Koi Photography",
+    description:
+      "Dokumentasikan keindahan koi Anda dengan foto profesional berkualitas tinggi. Cocok untuk portfolio, kontes, atau kenangan pribadi.",
+    features: [
+      "High-resolution photography",
+      "Angle terbaik untuk highlight pola & warna",
+      "Editing profesional",
+      "Format digital siap cetak"
+    ]
+  },
+  {
+    title: "Video Documentation",
+    description:
+      "Rekam gerakan elegan koi Anda dalam video berkualitas HD. Sempurna untuk showcase koleksi di media sosial.",
+    features: [
+      "HD/4K video quality",
+      "Slow-motion capture",
+      "Color grading profesional",
+      "Multiple angle shots"
+    ]
+  },
+  {
+    title: "Collection Portfolio",
+    description:
+      "Paket lengkap dokumentasi seluruh koleksi koi Anda dalam bentuk album profesional atau digital gallery.",
+    features: [
+      "Complete collection coverage",
+      "Custom album design",
+      "Digital gallery access",
+      "Yearly update options"
+    ]
+  }
+] as const;
+
+export const photographyBenefits = [
+  {
+    icon: "camera",
+    title: "Peralatan Profesional",
+    description: "Kamera high-end dengan lensa khusus untuk fotografi akuatik"
+  },
+  {
+    icon: "eye",
+    title: "Expert Photographer",
+    description: "Fotografer berpengalaman dalam dokumentasi ikan koi"
+  },
+  {
+    icon: "clock",
+    title: "Fast Delivery",
+    description: "Hasil foto/video siap dalam 3-5 hari kerja"
+  },
+  {
+    icon: "star",
+    title: "Satisfaction Guaranteed",
+    description: "Revisi gratis hingga Anda puas dengan hasilnya"
+  }
 ] as const;
 
 export const purchaseSteps = [

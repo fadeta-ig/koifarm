@@ -3,6 +3,7 @@ import Footer from "./components/footer";
 import HeroSection from "./sections/hero-section";
 import ProductsPreviewSection from "./sections/products-preview-section";
 import AboutPreviewSection from "./sections/about-preview-section";
+import PhotographyServiceSection from "./sections/photography-service-section";
 import GalleryPreviewSection from "./sections/gallery-preview-section";
 import TestimonialsPreviewSection from "./sections/testimonials-preview-section";
 import Liquid3DBackground from "./components/liquid-3d-background";
@@ -19,6 +20,7 @@ export default async function LandingPage() {
             <HeroSection />
             <ProductsPreviewSection />
             <AboutPreviewSection />
+            <PhotographyServiceSection />
             <GalleryPreviewSection />
             <TestimonialsPreviewSection />
           </main>
