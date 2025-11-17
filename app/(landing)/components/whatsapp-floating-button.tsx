@@ -81,26 +81,21 @@ export default function WhatsAppFloatingButton() {
           </div>
         </div>
 
-        {/* Badge - "Online" indicator */}
-        <div className="absolute -right-1 -top-1">
-          {/* Badge Glow */}
-          <div className="absolute inset-0 animate-pulse rounded-full bg-orange-400 blur-md" />
+        {/* Badge - Status indicator bullet */}
+        <div className="absolute -right-0.5 -top-0.5">
+          {/* Bullet Glow */}
+          <div className="absolute inset-0 animate-pulse rounded-full bg-green-400 blur-sm" />
 
-          {/* Badge Container */}
-          <div className="relative overflow-hidden rounded-full">
+          {/* Bullet Indicator */}
+          <div className="relative h-3.5 w-3.5 overflow-hidden rounded-full shadow-lg">
             {/* Glass Background */}
-            <div className="relative rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 px-2.5 py-1 shadow-lg">
-              {/* Glassmorphism Layer */}
-              <div className="absolute inset-0 rounded-full bg-white/20 backdrop-blur-sm" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-green-500" />
 
-              {/* Shine Effect */}
-              <div className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-white/50 blur-md" />
+            {/* Glassmorphism Layer */}
+            <div className="absolute inset-0 rounded-full bg-white/30 backdrop-blur-sm" />
 
-              {/* Badge Text */}
-              <span className="relative text-[10px] font-bold text-white drop-shadow-md">
-                Online
-              </span>
-            </div>
+            {/* Shine Effect */}
+            <div className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-white/60 blur-sm" />
           </div>
         </div>
 
