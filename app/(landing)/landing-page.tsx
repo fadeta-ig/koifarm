@@ -8,6 +8,7 @@ import GalleryPreviewSection from "./sections/gallery-preview-section";
 import TestimonialsPreviewSection from "./sections/testimonials-preview-section";
 import Liquid3DBackground from "./components/liquid-3d-background";
 import { ClientWrapper } from "./components/client-wrapper";
+import WhatsAppFloatingButton from "./components/whatsapp-floating-button";
 
 export default async function LandingPage() {
   return (
@@ -26,6 +27,7 @@ export default async function LandingPage() {
           </main>
           <Footer />
         </div>
+        <WhatsAppFloatingButton />
       </div>
     </ClientWrapper>
   );

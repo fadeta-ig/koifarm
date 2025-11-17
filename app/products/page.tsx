@@ -8,6 +8,7 @@ import Footer from "../(landing)/components/footer";
 import Liquid3DBackground from "../(landing)/components/liquid-3d-background";
 import LiquidCard from "../(landing)/components/liquid-card";
 import WhatsAppButton from "../(landing)/components/whatsapp-button";
+import WhatsAppFloatingButton from "../(landing)/components/whatsapp-floating-button";
 import ProductDetailModal from "./components/product-detail-modal";
 
 interface Variety {
@@ -250,6 +251,8 @@ Bisakah saya mendapatkan informasi lebih detail?`;
 
         <Footer />
       </div>
+
+      <WhatsAppFloatingButton />
 
       {/* Product Detail Modal */}
       {selectedProduct && (

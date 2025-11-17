@@ -7,6 +7,7 @@ import Footer from "../(landing)/components/footer";
 import Liquid3DBackground from "../(landing)/components/liquid-3d-background";
 import LiquidCard from "../(landing)/components/liquid-card";
 import LazyVideo from "../(landing)/components/lazy-video";
+import WhatsAppFloatingButton from "../(landing)/components/whatsapp-floating-button";
 import { ContentProvider } from "../(landing)/context/content-context";
 
 interface GalleryItem {
@@ -155,6 +156,8 @@ export default function GalleryPage() {
 
         <Footer />
       </div>
+
+      <WhatsAppFloatingButton />
     </div>
     </ContentProvider>
   );
